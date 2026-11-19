@@ -1,0 +1,391 @@
+body {
+    background-image: url(../images/background/home.png);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Elements */
+header {
+    text-align: center;
+    margin-bottom: 6px;
+
+    cursor: default;
+}
+
+#category-tooltip {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 1000;
+    width: auto;
+    min-height: 32px;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    color: var(--color-text);
+    background-image: url(/images/ui/dark-dither-bg.png);
+    border: 1px dashed var(--color-highlight);
+    box-shadow: 0 0 8px var(--color-black);
+    font-family: "CrimsonPro";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.25;
+    text-align: left;
+    pointer-events: none;
+}
+
+#category-tooltip[hidden] {
+    display: none;
+}
+
+.webtitle {
+    font-family: "blue";
+    font-size: 5rem;
+    text-shadow:
+        2px 3px 0px var(--color-black),
+        0px 0px 24px var(--color-black),
+        0px 0px 12px var(--color-text);
+    letter-spacing: 12px;
+    margin-top: 0.5rem;
+}
+
+#splash-text {
+    font-family: "CrimsonPro";
+    color: yellow;
+    font-weight: 800;
+    font-size: 22px;
+    text-shadow:
+        2px 2px 0px var(--color-black),
+        0px 0px 6px var(--color-black);
+
+    margin-top: -8px;
+}
+
+/* Main Content Panels */
+.panels {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-areas: "left main right";
+    justify-content: center;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.left-sidebar,
+.right-sidebar,
+.main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 12px;
+    align-content: start;
+}
+
+.main {
+    grid-area: main;
+    width: 500px;
+}
+
+.left-sidebar {
+    grid-area: left;
+    width: 240px;
+}
+
+.right-sidebar {
+    grid-area: right;
+    width: 260px;
+}
+
+.intro .winbody {
+    padding: 1.5em;
+    font-size: 18px;
+    font-family: CrimsonPro;
+}
+
+.intro,
+.intro .winbody {
+    overflow: visible;
+}
+
+.intro h2 {
+    padding-bottom: 12px;
+}
+
+.arc {
+    transform: scaleX(-1);
+    z-index: 5;
+    float: right;
+    position: relative;
+
+    margin-left: -70px;
+    margin-bottom: -70px;
+
+    top: -30px;
+    right: -80px;
+}
+
+.updates .winbody {
+    padding: 5px;
+}
+
+.update-log {
+    max-height: 100px;
+    overflow-y: scroll;
+    padding: 8px 0px;
+}
+
+.update-entry {
+    padding: 4px 16px;
+}
+
+.update-entry h2 {
+    color: var(--color-text2);
+    font-size: 14px;
+}
+
+.update-entry p {
+    font-size: 16px;
+}
+
+/* Icons */
+.pc-ico {
+    background-image: url(../images/icons/pc.png);
+}
+.pin-ico {
+    background-image: url(../images/icons/pin.png);
+}
+.compass-ico {
+    background-image: url(../images/icons/compass.png);
+}
+
+/* --------- */
+/* BUTTONS!! */
+/* --------- */
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 500px;
+
+    gap: 8px;
+    padding: 4px 0;
+
+    image-rendering: pixelated;
+}
+
+/* ------ */
+/* PINNED */
+/* ------ */
+.pinned li {
+    padding: 2px 4px;
+    list-style: none;
+}
+
+.pinned .winbody p {
+    margin-top: 4px;
+    padding: 4px;
+    color: var(--color-text2);
+}
+
+/* ------ */
+/* STATUS */
+/* ------ */
+.status .winbody {
+    background-image: url(../images/ui/dark-dither-bg.png);
+    font-size: 14px;
+}
+
+/* ------- */
+/* WEATHER */
+/* ------- */
+#weather-content {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    font-family: CrimsonPro;
+    font-size: 16px;
+    padding: 14px 10px;
+    padding-bottom: 16px;
+}
+
+#weather-icon {
+    margin-left: 4px;
+    min-width: 32px;
+    min-height: 32px;
+    image-rendering: pixelated;
+}
+
+#weather-content-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+#weather-desc,
+#weather-temp {
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* ---- */
+/* DATE */
+/* ---- */
+#date-header {
+    font-family: "CrimsonPro";
+    display: block;
+}
+
+.date-days {
+    font-weight: 600;
+    color: var(--color-highlight2);
+}
+
+#date-header h2 {
+    margin: 8px;
+    text-align: center;
+}
+
+#date-table {
+    width: 90%;
+    margin: 8px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+td {
+    padding: 2px;
+}
+
+#today {
+    background-color: var(--color-accent);
+    box-shadow: 2px 2px 0px var(--color-black);
+    font-weight: 800;
+
+    cursor: default;
+}
+
+/* ----- */
+/* MEDIA */
+/* ----- */
+#latest-movies {
+    cursor: default;
+    padding-bottom: 2px;
+}
+
+.movie-entry {
+    padding-top: 4px;
+}
+
+.date-watched {
+    color: var(--color-text3);
+    font-size: 13px;
+}
+
+.movie-title {
+    color: var(--color-highlight2);
+    font-family: CrimsonPro;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.rating {
+    display: flex;
+    width: 10px;
+    margin-top: 2px;
+    margin-right: -1px;
+    image-rendering: pixelated;
+}
+
+.movie-poster {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    pointer-events: none;
+    max-width: 200px;
+    border: 6px solid var(--color-text);
+    outline: 1px solid var(--color-black);
+    image-rendering: pixelated;
+    filter: url(#dither) drop-shadow(6px 6px 0 var(--color-highlight2));
+}
+
+/* ----- */
+/* STEAM */
+/* ----- */
+#steam-profile {
+    display: flex;
+    align-items: center;
+
+    cursor: default;
+
+    margin-bottom: 6px;
+}
+
+#steam-status {
+    margin-left: 10px;
+    margin-top: -3px; /* idk how else to vertically center this lol */
+
+    p {
+        padding: 2px 0px;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+#avatar {
+    width: 42px;
+    height: 42px;
+    background-image: url(../images/icons/steampfp.png);
+    background-size: 100%;
+    outline-style: solid;
+    outline-width: 1px;
+    outline-color: gray; /* how is dark gray lighter than gray what */
+}
+
+#latest-games {
+    padding-bottom: 2px;
+    cursor: default;
+}
+
+#steam-state {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.game-entry {
+    padding: 2px 0px;
+}
+
+.game-title {
+    color: var(--color-highlight);
+    font-family: CrimsonPro;
+    font-weight: 400;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hours-played {
+    color: var(--color-text2);
+    font-size: 13px;
+}
+
+.game-poster {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    pointer-events: none;
+    max-width: 320px;
+    border: 6px solid var(--color-text);
+    outline: 1px solid var(--color-black);
+    image-rendering: pixelated;
+    filter: url(#dither) drop-shadow(6px 6px 0 var(--color-highlight));
+}

@@ -1,0 +1,72 @@
+html {
+    font-family: CrimsonPro;
+    font-size: 16px;
+    color: var(--color-text);
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent) var(--color-black);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    image-rendering: pixelated;
+    box-sizing: border-box;
+}
+
+/* Internal Links */
+a {
+    color: var(--color-link);
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+    box-decoration-break: clone;
+}
+
+a:hover {
+    color: var(--color-link2);
+}
+
+/* External Links */
+a[href^="http"] {
+    text-decoration-style: solid;
+}
+
+@font-face {
+    font-family: "PS55";
+    src: url("/assets/fonts/Web437_IBM_PS-55_re.woff") format("woff");
+}
+
+@font-face {
+    font-family: "blue";
+    src: url("/assets/fonts/blue.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Jost";
+    src: url("/assets/fonts/Jost-VW.ttf");
+}
+
+@font-face {
+    font-family: "CrimsonPro";
+    src: url("/assets/fonts/CrimsonPro-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: "CrimsonPro";
+    src: url("/assets/fonts/CrimsonPro-Italic-VariableFont_wght.ttf");
+
+    font-style: italic;
+    font-weight: 200 900;
+}
+
+@font-face {
+    font-family: "PixelMPlus";
+    src: url("../assets/fonts/PixelMplus12-Regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "PixelMPlus";
+    src: url("../assets/fonts/PixelMplus12-Regular.ttf");
+    font-weight: 700;
+}

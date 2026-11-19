@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- meta -->
+        <title>Gyde's Web</title>
+        <meta name="description" content="Page Description." />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="images/icons/pc.png" rel="icon" type="image/x-icon" />
+
+        <!-- styles -->
+        <link rel="stylesheet" href="css/core.css" />
+        <link rel="stylesheet" href="css/shared.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link rel="stylesheet" href="css/palettes/evergreen.css" />
+
+        <!-- scripts -->
+        <script src="js/shared.js" defer></script>
+        <script src="js/index.js" defer></script>
+        <script src="js/movies.js" defer></script>
+        <script src="js/steam.js" defer></script>
+        <script src="js/tooltip.js" defer></script>
+        <script src="js/libs/gsap.min.js" defer></script>
+    </head>
+
+    <!-- what'cha lookin' for? 00 -->
+
+    <body>
+        <div id="tooltip" role="tooltip"></div>
+
+        <header>
+            <div class="webtitle wave-text">gydes web</div>
+            <p class="wave-text" id="splash-text">SplashText</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li>
+                    <a class="anchor" tabindex="0" data-tooltip="info hub">
+                        <svg viewBox="0 0 200 120" width="150px" height="80px">
+                            <path class="path" d="M 10, 70 Q 100, 70 190, 70" id="path-1"></path>
+                            <text class="path-text">
+                                <textPath href="#path-1" startOffset="50%" text-anchor="middle">
+                                    <tspan dy="-16">about</tspan>
+                                </textPath>
+                            </text>
+                        </svg>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="/about/webmaster/"><img src="/about/webmaster/favicon.png" class="icon" />webmaster</a>
+                        </li>
+                        <li>
+                            <a href="/about/site/"><img src="/about/site/favicon.png" class="icon" />webspace</a>
+                        </li>
+                        <li>
+                            <a href="/about/favs/"><img src="/about/favs/favicon.png" class="icon" />favourites</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="anchor" tabindex="1" data-tooltip="things im working on">
+                        <svg viewBox="0 0 200 120" width="150px" height="80px">
+                            <path class="path" d="M 10, 70 Q 100, 70 190, 70" id="path-1"></path>
+                            <text class="path-text">
+                                <textPath href="#path-1" startOffset="50%" text-anchor="middle">
+                                    <tspan dy="-16">projects</tspan>
+                                </textPath>
+                            </text>
+                        </svg>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="/projects/gamedev/"><img src="/projects/gamedev/favicon.png" class="icon" />game dev</a>
+                        </li>
+                        <li>
+                            <a href="/projects/editing/"><img src="/projects/editing/favicon.png" class="icon" />video editing</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="anchor" tabindex="2" data-tooltip="gallery for different things">
+                        <svg viewBox="0 0 200 120" width="150px" height="80px">
+                            <path class="path" d="M 10, 70 Q 100, 70 190, 70" id="path-1"></path>
+                            <text class="path-text">
+                                <textPath href="#path-1" startOffset="50%" text-anchor="middle">
+                                    <tspan dy="-16">gallery</tspan>
+                                </textPath>
+                            </text>
+                        </svg>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="/shrines/nostalgia/"><img src="/shrines/nostalgia/favicon.png" class="icon" />nostalgia</a>
+                        </li>
+                        <li>
+                            <a href="/shrines/nostalgia/"><img src="/shrines/ocs/favicon.png" class="icon" />OCs</a>
+                        </li>
+                        <li>
+                            <a href="/shrines/art/"><img src="/shrines/art/favicon.png" class="icon" />art</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="anchor" tabindex="3" data-tooltip="everything else">
+                        <svg viewBox="0 0 200 120" width="150px" height="80px">
+                            <path class="path" d="M 10, 70 Q 100, 70 190, 70" id="path-1"></path>
+                            <text class="path-text">
+                                <textPath href="#path-1" startOffset="50%" text-anchor="middle">
+                                    <tspan dy="-16">others</tspan>
+                                </textPath>
+                            </text>
+                        </svg>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="/others/resources/"><img src="/others/resources/favicon.png" class="icon" />resources</a>
+                        </li>
+                        <li>
+                            <a href="/others/credits/"><img src="/others/credits/favicon.png" class="icon" />credits</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="category-tooltip" role="status" aria-live="polite" hidden></div>
+
+        <div class="panels">
+            <!-- MAIN VIEW -->
+
+            <div class="main">
+                <div class="window intro active">
+                    <div class="winbar">
+                        <div class="wintitle">
+                            <div class="winicon pc-ico"></div>
+                            <p>Home (ホーム)</p>
+                        </div>
+                        <div class="controls">
+                            <button aria-label="min"></button>
+                            <button aria-label="max"></button>
+                            <button aria-label="close"></button>
+                        </div>
+                    </div>
+                    <div class="winbody">
+                        <h2>Hello!</h2>
+                        <p>
+                            I absolutely <span class="highlight-text">adore</span> the indieweb and I've wanted to make a personal site of my own for a while.
+                            More info <a href="about/site/">here</a> if you want.<br /><br />This website was created to be both my personal
+                            <span class="highlight-text">indie-web space</span>, as well as a <span class="highlight-text">portfolio showcase</span>.
+                            <br /><br />
+                            <img class="arc" src="images/random/neco-arc-lying-dither.gif" alt="Neco-Arc lying down" />
+                            If you're considering working with me, my
+                            <a href="">portfolio page</a> contains all my past projects and accomplishments. <br /><br />Enjoy your stay and thanks for stopping
+                            by!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="window updates active">
+                    <div class="winbar">
+                        <div class="wintitle">
+                            <p>Site Changelog</p>
+                        </div>
+                        <div class="controls">
+                            <button aria-label="min"></button>
+                            <button aria-label="max"></button>
+                            <button aria-label="close"></button>
+                        </div>
+                    </div>
+                    <div class="winbody">
+                        <div class="update-log winscroll">
+                            <div class="update-entry">
+                                <h2>19/11/2026</h2>
+                                <p>
+                                    - fixed 404 page<br />
+                                    - added 2 custom ✨ buttons ✨<br />
+                                </p>
+                            </div>
+                            <div class="update-entry">
+                                <h2>18/11/2026</h2>
+                                <p>
+                                    - <a href="shrines/nostalgia/index.html">nostalgia shrine</a> up with a bunch of cool images.<br />
+                                    - added steam widget
+                                </p>
+                            </div>
+                            <div class="update-entry">
+                                <h2>17/11/2026</h2>
+                                <p>home page (kind of) completed.</p>
+                            </div>
+                            <div class="update-entry">
+                                <h2>14/11/2026</h2>
+                                <p>page started.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <img src="images/buttons/imissxp.gif" alt="Windows XP my beloved" />
+                    <img src="images/buttons/98.gif" alt="98 larp" />
+
+                    <img src="images/buttons/bestvw.gif" alt="Please be on a computer!" />
+                    <img src="images/buttons/vsc.png" alt="Favourite IDE" data-tooltip="I made this button!" />
+                    <img src="images/buttons/aseprite.gif" alt="AMAZING APP!" data-tooltip="I made this button!" />
+                    <img src="images/buttons/nukeieani.gif" alt="Nuke IE" />
+                    <img src="images/buttons/steam.gif" alt="steam is the BEST" />
+                    <img src="images/buttons/nocookie.gif" alt="migu migu" />
+                    <img src="images/buttons/firefoxget.gif" alt="the og" />
+                    <img src="images/buttons/winrar.gif" alt="still on winrar" />
+                </div>
+            </div>
+
+            <!-- LEFT SIDEBAR -->
+            <section class="left-sidebar">
+                <div class="window pinned active">
+                    <div class="winbar">
+                        <div class="wintitle">
+                            <p>Pinned Sites</p>
+                        </div>
+                        <div class="controls">
+                            <button aria-label="min"></button>
+                            <button aria-label="max"></button>
+                            <button aria-label="close"></button>
+                        </div>
+                    </div>
+                    <div class="winbody">
+                        <ul>
+                            <li><a href="about/site/">About Site</a></li>
+                            <li><a href="about/favs/">Favourites</a></li>
+                            <li><a href="shrines/nostalgia/">Nostalgia Shrine</a></li>
+                            <li><a href="others/credits/">Credits</a></li>
+                        </ul>
+                        <p class="centered" style="color: var(--color-text3); font-size: 12px">Cool pages you should see</p>
+                    </div>
+                </div>
+
+                <!-- this came out looking so nice i love it -->
+                <div class="window steam active">
+                    <div class="winbar">
+                        <p>Steam</p>
+                        <div class="controls">
+                            <button aria-label="min"></button>
+                            <button aria-label="max"></button>
+                            <button aria-label="close"></button>
+                        </div>
+                    </div>
+                    <div class="winbody">
+                        <div id="steam-profile">
+                            <a href="https://steamcommunity.com/id/gyde/" target="_blank"><img id="avatar" /></a>
+                            <div id="steam-status">
+                                <a href="https://steamcommunity.com/id/gyde/" target="_blank"><p id="steam-name">Gyde</p></a>
+                                <p id="steam-state">Unavailable</p>
+                            </div>
+                        </div>
+                        <p style="color: var(--color-text3); font-size: 14px">Recently played</p>
+                        <div id="latest-games">Loading...</div>
+                    </div>
+                </div>
+
+                <div class="window media active">
+                    <div class="winbar">
+                        <p>Media</p>
+                        <div class="controls">
+                            <button aria-label="min"></button>
+                            <button aria-label="max"></button>
+                            <button aria-label="close"></button>
+                        </div>
+                    </div>
+                    <div class="winbody">
+                        <p style="color: var(--color-text2); font-size: 14px">Recently watched</p>
+                        <div id="latest-movies">
+                            <div class="movie-entry">
+                                <p>Loading...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT SIDEBAR -->
+            <section class="right-sidebar">
+                <div class="window status active">
+                    <div class="winbar">
+                        <div class="wintitle">
+                            <p>Status</p>
+                        </div>
+                        <div class="controls">
+                            <button aria-label="min"></button>
+                            <button aria-label="max"></button>
+                            <button aria-label="close"></button>
+                        </div>
+                    </div>
+                    <div class="winbody">
+                        <p><a href="">Gyde</a> 12 days ago</p>
+                        <p>Having fun with html again.</p>
+                    </div>
+                </div>
+
+                <div class="window weather active">
+                    <div class="winbar">
+                        <div class="wintitle">
+                            <p>Local Conditions</p>
+                        </div>
+                        <div class="controls">
+                            <button aria-label="min"></button>
+                            <button aria-label="max"></button>
+                            <button aria-label="close"></button>
+                        </div>
+                    </div>
+                    <div class="winbody" id="weather-content">
+                        <img src="" id="weather-icon" />
+                        <div id="weather-content-text">
+                            <span id="local-time">00:00 PM (GMT+8)</span>
+                            <span>
+                                <span class="highlight-text" id="weather-desc">Loading...</span>
+                                at
+                                <span class="highlight-text" id="weather-temp">0°C</span>
+                            </span>
+                            <span id="weather-wind">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="window date active">
+                    <div class="winbar">
+                        <p>Date</p>
+                        <div class="controls">
+                            <button aria-label="min"></button>
+                            <button aria-label="max"></button>
+                            <button aria-label="close"></button>
+                        </div>
+                    </div>
+                    <div class="winbody">
+                        <div id="date-header">
+                            <h2>November</h2>
+                            <table id="date-table">
+                                <!-- autofilled by index.js -->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- very cool dithering filter -->
+        <svg image-rendering="optimizeSpeed" width="0" height="0">
+            <filter id="dither" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+                <!-- saturate or desaturate before filtering -->
+                <feColorMatrix type="saturate" values="0.85" in="SourceGraphic" result="soft" />
+
+                <feImage
+                    width="4"
+                    height="4"
+                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAASElEQVR42gXBgQAAIAxFwW8QwhBCCCGEIYQQQgghhBBCCEMYwutOkphzYmbsvdG9l9YaEYG7o1or5xxKKay1UGYyxuC9R++dD7yGJkTj6F0HAAAAAElFTkSuQmCC"
+                />
+                <feTile result="tile" />
+
+                <feComposite operator="arithmetic" k1="0" k2="0.75" k3="0.25" k4="0" in="soft" in2="tile" />
+
+                <!-- quantize to 4 levels per channel for 64 colors -->
+                <feComponentTransfer>
+                    <feFuncR type="discrete" tableValues="0 0.333 0.667 1" />
+                    <feFuncG type="discrete" tableValues="0 0.333 0.667 1" />
+                    <feFuncB type="discrete" tableValues="0 0.333 0.667 1" />
+                </feComponentTransfer>
+            </filter>
+        </svg>
+    </body>
+</html>

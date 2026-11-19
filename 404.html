@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+    <head>
+        <title>lost?</title>
+        <meta name="description" content="Page Description." />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="/images/icons/missing.png" rel="icon" type="image/x-icon" />
+
+        <link rel="stylesheet" href="/css/core.css" />
+        <link rel="stylesheet" href="/css/shared.css" />
+        <link rel="stylesheet" href="/css/404.css" />
+        <link rel="stylesheet" href="/css/palettes/gold.css" />
+    </head>
+
+    <body>
+        <!-- the layout for this page was actually diabolical to figure out -->
+        <!-- genuine skill issue tbh, all this for the *maybe* 2 people will see this page -->
+        <div class="areyoulost">
+            <div class="window pulp active">
+                <div class="winbar">
+                    <div class="wintitle">
+                        <p>Pulp</p>
+                    </div>
+                    <div class="controls">
+                        <button aria-label="min"></button>
+                        <button aria-label="max"></button>
+                        <button aria-label="close"></button>
+                    </div>
+                </div>
+                <div class="winbody">
+                    <img src="/images/random/pulpfiction.png" />
+                    <div class="what">
+                        <p><span class="place">what</span> ain't no country I ever heard of.</p>
+                        <p>they speak english in <span class="place">what</span>?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="answers">
+                <a href="javascript:history.back()">
+                    <div class="winbody">
+                        <div class="answer">A. Let's calm down and take a step back.</div>
+                    </div>
+                </a>
+
+                <a href="/index.html">
+                    <div class="winbody">
+                        <div class="answer">B. I really wanna go home right now.</div>
+                    </div>
+                </a>
+
+                <a href="https://youtu.be/qo5jnBJvGUs?si=39gkA3EkOi_YbTe0&t=116" target="_blank">
+                    <div class="winbody">
+                        <div class="answer">A. <span class="place">what</span>?</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <script>
+            const segments = decodeURIComponent(location.pathname).split("/").filter(Boolean);
+            const place = segments.pop() || "What";
+            document.querySelectorAll(".place").forEach((el) => {
+                el.textContent = place;
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,90 @@
+/* my god this took way longer to get right that it should have. */
+/* all so *maybe* 2 people wil see it gg */
+
+body {
+    background-image: url(/images/background/backrooms.png);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+
+    display: flex;
+}
+
+.areyoulost {
+    margin: auto;
+    padding: 24px;
+    box-sizing: border-box;
+    width: min(100%, 560px);
+    min-width: 0;
+}
+.pulp {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pulp .winbody {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px;
+}
+
+.pulp .winbody img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.what {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: -64px;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 8px;
+
+    font-weight: 700;
+    font-size: 20px;
+    text-shadow: 2px 2px 0 var(--color-black);
+}
+
+.what .place {
+    color: var(--color-highlight);
+}
+
+.answers {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.answers > a,
+.answers > a:link,
+.answers > a:visited,
+.answers > a:hover,
+.answers > a:active {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.answers > a:hover .answer,
+.answers > a:focus-visible .answer {
+    color: var(--color-highlight);
+    outline-color: var(--color-highlight);
+}
+
+.answer {
+    background-image: url(/images/ui/dark-dither-bg.png);
+
+    font-size: 16px;
+    padding: 8px;
+
+    outline-color: var(--color-text);
+}

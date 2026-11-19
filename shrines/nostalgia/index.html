@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Meta -->
+        <title>Gyde's Nostalgia</title>
+        <meta name="Gyde's Nostalgia Shrine" content="things that make me feel fuzzy" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="favicon.png" rel="icon" type="image/png" />
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="../../css/core.css" />
+        <link rel="stylesheet" href="../../css/shared.css" />
+        <link rel="stylesheet" href="../../css/palettes/bliss.css" />
+        <link rel="stylesheet" href="nostalgia.css" />
+
+        <!-- Scripts -->
+        <script src="js/shared.js" defer></script>
+        <script src="js/libs/gsap.min.js" defer></script>
+    </head>
+    <body>
+        <div class="go-back"><a href="../../index.html">home</a> / shrines / nostalgia</div>
+        <header>
+            <h1>nostalgia shrine!</h1>
+            <p>
+                a dedication to all the things that either shaped<br />my childhood or remind me of simpler times<br />
+                <span>inspired by <a href="https://altalenae.neocities.org/shrines/nostalgia" target="_blank">altalenae's shrine</a></span>
+            </p>
+        </header>
+
+        <div class="gallery">
+            <div class="image"><img src="images/geronimo.jpg" /></div>
+            <div class="image"><img src="images/kinect-adv.jpg" /></div>
+            <div class="image"><img src="images/tf2.jpg" /></div>
+            <div class="image"><img src="images/laststand.jpg" /></div>
+            <div class="image"><img src="images/lego-sw-tcs.jpg" /></div>
+            <div class="image"><img src="images/bluesclues.jpg" /></div>
+            <div class="image"><img src="images/papafranku.jpg" /></div>
+            <div class="image"><img src="images/fruit-ninja.jpg" /></div>
+            <div class="image"><img src="images/pvz.jpg" /></div>
+            <div class="image"><img src="images/mickymouseclubhouse.jpg" /></div>
+            <div class="image"><img src="images/sigh.jpg" /></div>
+            <div class="image"><img src="images/amulet.jpg" /></div>
+            <div class="image"><img src="images/first-anime.jpg" /></div>
+            <div class="image"><img src="images/angrybirds.jpg" /></div>
+            <div class="image"><img src="images/minecraft.jpg" /></div>
+            <div class="image"><img src="images/maze-runner.jpg" /></div>
+            <div class="image"><img src="images/ninjago.jpg" /></div>
+            <div class="image"><img src="images/littlebigplanet2.jpg" /></div>
+            <div class="image"><img src="images/winnie.jpg" /></div>
+            <div class="image"><img src="images/crossy.jpg" /></div>
+            <div class="image"><img src="images/ogben10.jpg" /></div>
+            <div class="image"><img src="images/pdp.jpg" /></div>
+            <div class="image"><img src="images/doraemon.jpg" /></div>
+            <div class="image"><img src="images/templerun.jpg" /></div>
+            <div class="image"><img src="images/winxp.jpg" /></div>
+            <div class="image"><img src="images/techdeck.jpg" /></div>
+            <div class="image"><img src="images/tankionline.jpg" /></div>
+            <div class="image"><img src="images/sw-kinect.jpg" /></div>
+            <div class="image"><img src="images/wmw.jpg" /></div>
+            <div class="image"><img src="images/fancypants.jpg" /></div>
+            <div class="image"><img src="images/animal-jam.jpg" /></div>
+            <div class="image"><img src="images/thinkpad.jpg" /></div>
+            <div class="image"><img src="images/lastdayonearth.jpg" /></div>
+            <div class="image"><img src="images/youngscientist.jpg" /></div>
+            <div class="image"><img src="images/sheepcartoon.jpg" /></div>
+            <div class="image"><img src="images/smosh.jpg" /></div>
+            <div class="image"><img src="images/pola-snacc.jpg" /></div>
+            <div class="image"><img src="images/ncs.jpg" /></div>
+        </div>
+    </body>
+
+    <!-- very cool dithering filter -->
+    <svg image-rendering="optimizeSpeed" width="0" height="0">
+        <filter id="dither" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+            <!-- saturate or desaturate before filtering -->
+            <feColorMatrix type="saturate" values="0.85" in="SourceGraphic" result="soft" />
+
+            <feImage
+                width="4"
+                height="4"
+                xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAASElEQVR42gXBgQAAIAxFwW8QwhBCCCGEIYQQQgghhBBCCEMYwutOkphzYmbsvdG9l9YaEYG7o1or5xxKKay1UGYyxuC9R++dD7yGJkTj6F0HAAAAAElFTkSuQmCC"
+            />
+            <feTile result="tile" />
+
+            <feComposite operator="arithmetic" k1="0" k2="0.75" k3="0.25" k4="0" in="soft" in2="tile" />
+
+            <feComponentTransfer>
+                <feFuncR type="discrete" tableValues="0 0.333 0.667 1" />
+                <feFuncG type="discrete" tableValues="0 0.333 0.667 1" />
+                <feFuncB type="discrete" tableValues="0 0.333 0.667 1" />
+            </feComponentTransfer>
+        </filter>
+    </svg>
+</html>

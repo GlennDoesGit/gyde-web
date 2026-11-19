@@ -1,0 +1,330 @@
+﻿/* -------------------------- */
+/* Styling for Win95 borders. */
+/* -------------------------- */
+:root {
+    --winbar-disabled: #808080;
+    --winbar-highlight: #ffffff;
+    --winbar-gray: #c0c7c8;
+    --winbar-darkgray: #808080;
+    --winbar-black: #000000;
+}
+
+.winbar {
+    font-family: "MS UI Gothic", PixelMPlus;
+    font-size: 12px;
+    height: 27px;
+    width: 100%;
+    background-color: var(--winbar-disabled);
+    cursor: default;
+
+    box-shadow:
+        inset -1px -1px var(--winbar-black),
+        inset 1px 1px var(--winbar-gray),
+        inset -2px -2px var(--winbar-darkgray),
+        inset 2px 2px var(--winbar-highlight),
+        inset -3px -3px var(--winbar-gray),
+        inset 3px 3px var(--winbar-gray),
+        inset -4px -4px var(--winbar-gray),
+        inset 4px 4px var(--winbar-gray);
+
+    padding: 6px;
+    padding-left: 8px;
+    clip-path: inset(0px 0px 4px 0px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.window.active .winbar {
+    background-color: var(--color-accent);
+}
+
+.wintitle {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.winicon {
+    min-width: 16px;
+    min-height: 16px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: rows;
+    align-items: center;
+}
+
+.controls button {
+    padding: 0;
+    display: block;
+    min-width: 16px;
+    min-height: 14px;
+
+    background: var(--winbar-gray);
+    border: none;
+    border-radius: 0;
+    box-shadow:
+        inset -1px -1px var(--winbar-black),
+        inset 1px 1px var(--winbar-highlight),
+        inset -2px -2px var(--winbar-darkgray);
+}
+
+.controls button:not(:disabled):active,
+input[type="submit"]:not(:disabled):active,
+input[type="reset"]:not(:disabled):active {
+    box-shadow:
+        inset -1px -1px var(--winbar-highlight),
+        inset 1px 1px var(--winbar-black),
+        inset 2px 2px var(--winbar-darkgray);
+}
+
+.controls button:active {
+    padding: 0;
+}
+
+.controls button:focus {
+    outline: none;
+}
+.controls button[aria-label="min"],
+.controls button[aria-label].min {
+    background-image: url("../images/ui/minimize.svg");
+    background-repeat: no-repeat;
+    background-position: bottom 3px left 4px;
+}
+.controls button[aria-label="max"],
+.controls button[aria-label].max {
+    background-image: url("../images/ui/maximize.svg");
+    background-repeat: no-repeat;
+    background-position: top 2px left 3px;
+}
+.controls button[aria-label="close"],
+.controls button[aria-label].close {
+    margin-left: 2px;
+    background-image: url("../images/ui/close.svg");
+    background-repeat: no-repeat;
+    background-position: top 3px left 4px;
+}
+
+.winbody {
+    font-family: "MS UI Gothic", PixelMPlus;
+    width: 100%;
+    background-color: var(--winbar-highlight);
+    box-shadow:
+        inset -1px -1px var(--winbar-black),
+        inset 1px 1px var(--winbar-gray),
+        inset -2px -2px var(--winbar-darkgray),
+        inset 2px 2px var(--winbar-highlight),
+        inset -3px -3px var(--winbar-gray),
+        inset 3px 3px var(--winbar-gray),
+        inset -4px -4px var(--winbar-highlight),
+        inset 4px 5px var(--winbar-gray),
+        inset -5px -5px var(--winbar-gray),
+        inset 5px 6px var(--winbar-black);
+
+    padding: 12px;
+    padding-top: 13px; /* i don't fully get it but padding needs an extra px to account for the border styling */
+    margin-top: -6px;
+
+    background: url(../images/ui/dark-dither-bg.png);
+}
+
+.winscroll {
+    scrollbar-width: auto;
+    scrollbar-color: auto;
+}
+
+.winscroll::-webkit-scrollbar-thumb {
+    background-color: var(--winbar-gray);
+    box-shadow:
+        inset -1px -1px var(--winbar-black),
+        inset 1px 1px var(--winbar-gray),
+        inset -2px -2px var(--winbar-darkgray),
+        inset 2px 2px var(--winbar-highlight);
+}
+
+.winscroll::-webkit-scrollbar {
+    width: 16px;
+}
+.winscroll::-webkit-scrollbar:horizontal {
+    height: 17px;
+}
+
+.winscroll::-webkit-scrollbar-corner {
+    background: var(--winbar-gray);
+}
+
+.winscroll::-webkit-scrollbar-track {
+    background-image: url(../images/ui/scrollbar-background.svg);
+}
+
+.winscroll::-webkit-scrollbar-button:horizontal:start:decrement,
+.winscroll::-webkit-scrollbar-button:horizontal:end:increment,
+.winscroll::-webkit-scrollbar-button:vertical:start:decrement,
+.winscroll::-webkit-scrollbar-button:vertical:end:increment {
+    display: block;
+}
+
+.winscroll::-webkit-scrollbar-button:vertical:start {
+    height: 17px;
+    background-image: url(../images/ui/button-up.svg);
+}
+.winscroll::-webkit-scrollbar-button:vertical:end {
+    height: 17px;
+    background-image: url(../images/ui/button-down.svg);
+}
+.winscroll::-webkit-scrollbar-button:horizontal:start {
+    width: 16px;
+    background-image: url(../images/ui/button-left.svg);
+}
+.winscroll::-webkit-scrollbar-button:horizontal:end {
+    width: 16px;
+    background-image: url(../images/ui/button-right.svg);
+}
+
+/* -------------- */
+/* Helper Classes */
+/* -------------- */
+.centered {
+    text-align: center;
+}
+
+.highlight-text {
+    color: var(--color-highlight);
+}
+
+.no-style-link,
+.no-style-link:link,
+.no-style-link:visited,
+.no-style-link:hover,
+.no-style-link:active {
+    color: inherit;
+    text-decoration: none;
+    cursor: default;
+}
+
+/* ----------------------- */
+/* Shared Elements Styling */
+/* ----------------------- */
+
+.wave-text span {
+    display: inline-block;
+    animation: wave 3s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0%,
+    100% {
+        transform: translateY(1);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+nav {
+    ul {
+        list-style: none;
+        display: flex;
+        gap: 1em;
+        justify-content: center;
+
+        li {
+            position: relative;
+
+            ul {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                display: none;
+                min-width: 240px;
+                z-index: 1000;
+                font-size: 18px;
+                overflow: hidden;
+
+                li {
+                    letter-spacing: 2px;
+                    transition: text-indent 0.1s;
+                    transition: text-indent 0.1s;
+
+                    a {
+                        text-decoration: none;
+                        padding: 6px 12px;
+                        display: block;
+                        text-shadow: 2px 2px 0px var(--color-black);
+                    }
+
+                    &:hover {
+                        background-color: rgba(62, 97, 85, 0.322);
+                        text-indent: 3px;
+                        font-weight: 800;
+                    }
+                }
+            }
+
+            &:hover > ul,
+            &:focus-within > ul {
+                padding: 1em 0;
+                border: 1px dashed var(--winbar-highlight);
+                box-shadow: 0px 0px 8px var(--color-black);
+                background-image: url(/images/ui/green-dither-bg.png);
+                border-radius: 8px;
+                margin-top: -1em;
+                display: block;
+            }
+        }
+    }
+
+    a {
+        cursor: pointer;
+    }
+
+    path {
+        stroke: var(--color-text);
+        stroke-width: 4px;
+        filter: drop-shadow(2px 2px 0px var(--color-black));
+        fill: none;
+    }
+
+    a:hover {
+        filter: drop-shadow(0 0 8px var(--color-highlight));
+    }
+
+    text {
+        fill: var(--color-text);
+        font-family: "CrimsonPro";
+        font-weight: 800;
+        font-size: 2.25rem;
+        text-shadow:
+            2px 2px 0 var(--color-black),
+            0px 0px 8px var(--color-black);
+    }
+
+    .icon {
+        vertical-align: -5px;
+        margin-right: 8px;
+        min-height: 20px;
+        filter: drop-shadow(2px 2px 0 var(--color-black));
+    }
+}
+
+#tooltip {
+    display: none;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 6px 10px;
+
+    white-space: nowrap;
+    pointer-events: none;
+
+    font-family: "MS UI Gothic", PixelMPlus;
+    font-size: 16px;
+
+    background: var(--color-accent-opc);
+    outline-style: dashed;
+    outline-width: 1px;
+    outline-color: var(--color-highlight);
+}

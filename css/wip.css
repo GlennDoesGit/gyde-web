@@ -1,0 +1,30 @@
+body {
+    background-image: url(../images/background/snowforest.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.go-back {
+    min-width: 240px;
+    position: fixed;
+    bottom: 4em;
+    left: 50%;
+    transform: translateX(-50%);
+    background-image: url(../images/ui/dark-dither-bg.png);
+    padding: 1.25rem 3rem;
+    text-align: center;
+    font-size: 18px;
+
+    outline-style: dashed;
+    outline-width: 2px;
+    outline-color: var(--color-accent);
+}
+
+.go-back p {
+    padding: 8px 0px;
+}
