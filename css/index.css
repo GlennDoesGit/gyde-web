@@ -50,7 +50,7 @@ header {
         0px 0px 24px var(--color-black),
         0px 0px 12px var(--color-text);
     letter-spacing: 12px;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 
 #splash-text {

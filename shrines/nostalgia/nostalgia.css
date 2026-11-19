@@ -47,6 +47,12 @@ header span {
     padding-top: 0px;
 }
 
+@media (max-width: 800px) {
+    .gallery {
+        column-count: 2;
+    }
+}
+
 .image {
     display: block;
     margin-bottom: 0.5rem;

@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="css/shared.css" />
         <link rel="stylesheet" href="css/index.css" />
         <link rel="stylesheet" href="css/palettes/evergreen.css" />
+        <link rel="stylesheet" href="assets/comment-widget/comment-widget.css" />
 
         <!-- scripts -->
         <script src="js/shared.js" defer></script>
@@ -20,6 +21,7 @@
         <script src="js/movies.js" defer></script>
         <script src="js/steam.js" defer></script>
         <script src="js/tooltip.js" defer></script>
+        <script src="assets/comment-widget/comment-widget.js" defer></script>
         <script src="js/libs/gsap.min.js" defer></script>
     </head>
 
@@ -64,7 +66,7 @@
                             <path class="path" d="M 10, 70 Q 100, 70 190, 70" id="path-1"></path>
                             <text class="path-text">
                                 <textPath href="#path-1" startOffset="50%" text-anchor="middle">
-                                    <tspan dy="-16">projects</tspan>
+                                    <tspan dy="-16">things</tspan>
                                 </textPath>
                             </text>
                         </svg>
@@ -171,27 +173,56 @@
                     <div class="winbody">
                         <div class="update-log winscroll">
                             <div class="update-entry">
-                                <h2>19/11/2026</h2>
+                                <h2>20-Nov-2026</h2>
+                                <p>
+                                    - created a <a href="shrines/art/">art gallery</a> for all my mid art<br />
+                                    - added status widget<br />
+                                </p>
+                            </div>
+                            <div class="update-entry">
+                                <h2>19-Nov-2026</h2>
                                 <p>
                                     - fixed 404 page<br />
                                     - added 2 custom ✨ buttons ✨<br />
                                 </p>
                             </div>
                             <div class="update-entry">
-                                <h2>18/11/2026</h2>
+                                <h2>18-Nov-2026</h2>
                                 <p>
-                                    - <a href="shrines/nostalgia/index.html">nostalgia shrine</a> up with a bunch of cool images.<br />
+                                    - <a href="shrines/nostalgia/">nostalgia shrine</a> up with a bunch of cool images.<br />
                                     - added steam widget
                                 </p>
                             </div>
                             <div class="update-entry">
-                                <h2>17/11/2026</h2>
+                                <h2>17-Nov-2026</h2>
                                 <p>home page (kind of) completed.</p>
                             </div>
                             <div class="update-entry">
-                                <h2>14/11/2026</h2>
+                                <h2>14-Nov-2026</h2>
                                 <p>page started.</p>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="window comments active">
+                    <div class="winbar">
+                        <div class="wintitle">
+                            <p>Site Changelog</p>
+                        </div>
+                        <div class="controls">
+                            <button aria-label="min"></button>
+                            <button aria-label="max"></button>
+                            <button aria-label="close"></button>
+                        </div>
+                    </div>
+                    <div class="winbody">
+                        <div id="c_widget" class="winscroll"></div>
+
+                        <div class="status-bar">
+                            <p class="status-bar-field">Press F1 for help</p>
+                            <p class="status-bar-field">Slide 1</p>
+                            <p class="status-bar-field">CPU Usage: 14%</p>
                         </div>
                     </div>
                 </div>
