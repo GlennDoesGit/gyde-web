@@ -262,3 +262,9 @@ function SetDate() {
 }
 
 SetDate();
+
+const cpuField = document.getElementById("cpu-use");
+
+setInterval(() => {
+    cpuField.textContent = `CPU Usage: ${Math.floor(3 + Math.random() * 5)}%`;
+}, 1500);

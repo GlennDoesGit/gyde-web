@@ -83,7 +83,7 @@
     font-size: 12px;
 }
 
-#c_widget input:not(:disabled):active,
+#c_widget input[type="submit"]:not(:disabled):active,
 #c_widget button:not(:disabled):active {
     box-shadow:
         inset -1px -1px var(--winbar-highlight),
@@ -98,7 +98,7 @@
 
 /* Input section */
 #c_inputDiv {
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 }
 
 #c_widgetTitle {
@@ -122,7 +122,7 @@
     width: 100%;
 }
 .c-input:focus {
-    border: 1px solid var(--color-highlight);
+    border: 1px solid var(--color-highlight2);
 }
 
 .c-textInput {
@@ -190,7 +190,7 @@
     color: var(--color-link4);
 }
 .c-timestamp {
-    color: var(--color-text3);
+    color: var(--color-text4);
     float: right;
     font-size: 12px;
     padding-top: 2px;
@@ -275,4 +275,9 @@
 .moderation {
     color: var(--color-text3);
     font-style: italic;
+}
+
+.unmod-checkbox {
+    top: 14px;
+    font-size: 12px;
 }

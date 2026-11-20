@@ -7,6 +7,18 @@
     --winbar-gray: #c0c0c0;
     --winbar-darkgray: #808080;
     --winbar-black: #000000;
+
+    --checkbox-width: 13px;
+    --radio-label-spacing: 6px;
+    --checkbox-total-width-precalc: var(--checkbox-width) + var(--radio-label-spacing);
+    --checkbox-total-width: calc(var(--checkbox-total-width-precalc));
+    --checkbox-left: calc(-1 * var(--checkbox-total-width-precalc));
+    --checkmark-width: 7px;
+    --checkmark-left: 3px;
+
+    --border-field:
+        inset -1px -1px var(--button-highlight), inset 1px 1px var(--button-shadow), inset -2px -2px var(--button-face), inset 2px 2px var(--window-frame);
+    --border-status-field: inset -1px -1px var(--button-face), inset 1px 1px var(--button-shadow);
 }
 
 .window {
@@ -198,6 +210,71 @@ input[type="reset"]:not(:disabled):active {
     color: var(--winbar-black);
     font-size: 12px;
 }
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+    background: 0;
+    position: fixed;
+    opacity: 0;
+    border: none;
+}
+
+input[type="checkbox"] + label {
+    line-height: 13px;
+}
+
+input[type="checkbox"]:focus + label {
+    outline: 1px dotted #000000;
+}
+
+input[type="checkbox"] + label {
+    position: relative;
+    margin-left: var(--checkbox-total-width);
+}
+
+input[type="checkbox"] + label::before {
+    content: "";
+    position: absolute;
+    left: calc(-1 * (var(--checkbox-total-width-precalc)));
+    top: -1px;
+    display: inline-block;
+    width: var(--checkbox-width);
+    height: var(--checkbox-width);
+    background: var(--winbar-highlight);
+    box-shadow:
+        inset -1px -1px var(--winbar-highlight),
+        inset 1px 1px var(--winbar-darkgray),
+        inset -2px -2px var(--winbar-gray),
+        inset 2px 2px var(--winbar-black);
+    margin-right: var(--radio-label-spacing);
+}
+
+input[type="checkbox"]:active + label::before {
+    background: var(--winbar-gray);
+}
+
+input[type="checkbox"]:checked + label::after {
+    content: "";
+    display: block;
+    width: var(--checkmark-width);
+    height: var(--checkmark-width);
+    position: absolute;
+    top: 2px;
+    left: calc(-1 * (var(--checkbox-total-width-precalc)) + var(--checkmark-left));
+    background: url(../images/ui/checkmark.svg);
+}
+
+input[type="checkbox"][disabled] + label::before {
+    background: var(--winbar-gray);
+}
+
+input[type="checkbox"][disabled]:checked + label::after {
+    background: url(../images/ui/checkmark.svg);
+}
+
 /* -------------- */
 /* Helper Classes */
 /* -------------- */

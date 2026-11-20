@@ -188,49 +188,74 @@
                     </div>
                 </div>
 
-                <div class="window updates active">
-                    <div class="winbar">
-                        <div class="wintitle">
-                            <p>Site Changelog</p>
+                <div class="update-button-grp">
+                    <div class="window updates active">
+                        <div class="winbar">
+                            <div class="wintitle">
+                                <p>Changelog</p>
+                            </div>
+                            <div class="controls">
+                                <button aria-label="min"></button>
+                                <button aria-label="max"></button>
+                                <button aria-label="close"></button>
+                            </div>
                         </div>
-                        <div class="controls">
-                            <button aria-label="min"></button>
-                            <button aria-label="max"></button>
-                            <button aria-label="close"></button>
+                        <div class="winbody win-inset">
+                            <div class="update-log winscroll">
+                                <div class="update-entry">
+                                    <h2>20-11-2026</h2>
+                                    <p>
+                                        - created a <a href="shrines/art/">art gallery</a> for all my mid art<br />
+                                        - added status widget<br />
+                                        - added comments <- this was really cool<br />
+                                        - added site button window
+                                    </p>
+                                </div>
+                                <div class="update-entry">
+                                    <h2>19-11-2026</h2>
+                                    <p>
+                                        - fixed 404 page<br />
+                                        - added 2 custom ✨ buttons ✨<br />
+                                    </p>
+                                </div>
+                                <div class="update-entry">
+                                    <h2>18-11-2026</h2>
+                                    <p>
+                                        - <a href="shrines/nostalgia/">nostalgia shrine</a> up with a bunch of cool images.<br />
+                                        - added steam widget
+                                    </p>
+                                </div>
+                                <div class="update-entry">
+                                    <h2>17-11-2026</h2>
+                                    <p>home page (kind of) completed.</p>
+                                </div>
+                                <div class="update-entry">
+                                    <h2>14-11-2026</h2>
+                                    <p>page started.</p>
+                                </div>
+                                <div class="update-entry">
+                                    <p>The beginning of everything...</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="winbody win-inset">
-                        <div class="update-log winscroll">
-                            <div class="update-entry">
-                                <h2>20-11-2026</h2>
-                                <p>
-                                    - created a <a href="shrines/art/">art gallery</a> for all my mid art<br />
-                                    - added status widget<br />
-                                    - added comments <- this was really cool
-                                </p>
+
+                    <div class="window mybutton active">
+                        <div class="winbar">
+                            <div class="wintitle">
+                                <p>Button</p>
                             </div>
-                            <div class="update-entry">
-                                <h2>19-11-2026</h2>
-                                <p>
-                                    - fixed 404 page<br />
-                                    - added 2 custom ✨ buttons ✨<br />
-                                </p>
+                            <div class="controls">
+                                <button aria-label="min"></button>
+                                <button aria-label="max"></button>
+                                <button aria-label="close"></button>
                             </div>
-                            <div class="update-entry">
-                                <h2>18-11-2026</h2>
-                                <p>
-                                    - <a href="shrines/nostalgia/">nostalgia shrine</a> up with a bunch of cool images.<br />
-                                    - added steam widget
-                                </p>
-                            </div>
-                            <div class="update-entry">
-                                <h2>17-11-2026</h2>
-                                <p>home page (kind of) completed.</p>
-                            </div>
-                            <div class="update-entry">
-                                <h2>14-11-2026</h2>
-                                <p>page started.</p>
-                            </div>
+                        </div>
+                        <div class="winbody win-inset">
+                            <img src="images/buttons/gydes-88x31.gif" alt="site button" />
+                            <textarea id="site-button-txt" readonly="">
+&lt;a href="https://gyde.site/"&gt;&lt;img src="https://gyde.site/images/gydes-88x31.gif" alt="Medjed"&gt;&lt;/a&gt;</textarea
+                            >
                         </div>
                     </div>
                 </div>
@@ -253,9 +278,9 @@
                         </div>
 
                         <div class="status-bar">
-                            <p class="status-bar-field">Press F1 for help</p>
-                            <p class="status-bar-field">Slide 1</p>
-                            <p class="status-bar-field">CPU Usage: 14%</p>
+                            <p class="status-bar-field">That CPU stat is NOT real</p>
+                            <p class="status-bar-field" id="comment-page-no">Page 1 of 1</p>
+                            <p class="status-bar-field" id="cpu-use">CPU Usage: 0%</p>
                         </div>
                     </div>
                 </div>

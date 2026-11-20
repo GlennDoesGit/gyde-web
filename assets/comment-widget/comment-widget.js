@@ -27,6 +27,8 @@ const s_replyId = "2082993712";
 const s_moderatedId = "1055717401"; // The Moderated field ID
 const s_sheetId = "19lFnEgj-1CXZlKG-jomRcvbWx-pbatxFC26jWmWXp84";
 
+let doModeration = true;
+
 // The values below are necessary for accurate timestamps, I've filled it in with EST as an example
 const s_timezone = +8; // Your personal timezone (Example: UTC-5:00 is -5 here, UTC+10:30 would be 10.5)
 const s_daylightSavings = false; // If your personal timezone uses DST, set this to true
@@ -35,7 +37,7 @@ const s_dstStart = ["March", "Sunday", 2, 2]; // Example shown is the second Sun
 const s_dstEnd = ["November", "Sunday", 1, 2]; // Example shown is the first Sunday of November at 2:00 am
 
 // Misc - Other random settings
-const s_commentsPerPage = 4; // The max amount of comments that can be displayed on one page, any number >= 1 (Replies not counted)
+const s_commentsPerPage = 3; // The max amount of comments that can be displayed on one page, any number >= 1 (Replies not counted)
 const s_maxLength = 500; // The max character length of a comment
 const s_maxLengthName = 24; // The max character length of a name
 const s_commentsOpen = true; // Change to false if you'd like to close your comment section site-wide (Turn it off on Google Forms too!)
@@ -90,7 +92,7 @@ document.getElementsByTagName("head")[0].appendChild(c_cssLink);
 // HTML Form
 const v_mainHtml = `
     <div id="c_inputDiv">
-        <form id="c_form" onsubmit="c_submitButton.disabled = true; v_submitted = true;" method="post" target="c_hiddenIframe" action="https://docs.google.com/forms/d/e/${s_formId}/formResponse"></form>
+        <form id="c_form" onsubmit="c_submitButton.disabled = true; v_submitted = true;" method="post" target="c_hiddenIframe" action="https://docs.google.com/forms/d/e/${s_formId}/formResponse" autocomplete="off"></form>
     </div>
     <div id="c_container">${s_loadingText}</div>
 `;
@@ -114,6 +116,10 @@ const v_formHtml = `
     </div>
 
     <input id="c_submitButton" name="c_submitButton" type="submit" value="${s_submitButtonLabel}" disabled>
+
+    <input type="checkbox" id="toggle-unmod">
+    <label class="unmod-checkbox" for="toggle-unmod">Show unmoderatted comments</label>
+
 `;
 
 // Insert main HTML to page
@@ -312,6 +318,7 @@ function displayComments(comments) {
     v_amountOfPages = Math.ceil(comments.length / s_commentsPerPage);
     v_commentMax = s_commentsPerPage * v_pageNum;
     v_commentMin = v_commentMax - s_commentsPerPage;
+    updatePageNo();
 
     // Main comments (not replies)
     comments.reverse(); // Newest comments go to top
@@ -324,7 +331,7 @@ function displayComments(comments) {
         button.value = comment.id;
         button.className = "c-replyButton";
 
-        if (comments[i].Moderated == false) {
+        if (comments[i].Moderated == false && doModeration) {
             button.disabled = true;
         } else {
             button.setAttribute("onclick", `openReply(this.value)`);
@@ -438,7 +445,7 @@ function createComment(data) {
     }
     name.innerText = filteredName;
     name.className = "c-name";
-    if (data.Moderated == false) {
+    if (data.Moderated == false && doModeration) {
         name.innerText = "Guest";
     }
     comment.appendChild(name);
@@ -456,7 +463,7 @@ function createComment(data) {
         site.href = data.Website;
         site.target = "_blank";
         site.className = "c-site";
-        if (data.Moderated == false) {
+        if (data.Moderated == false && doModeration) {
             site.innerText = "";
         }
         comment.appendChild(site);
@@ -470,7 +477,7 @@ function createComment(data) {
     }
     text.innerText = filteredText;
     text.className = "c-text";
-    if (data.Moderated == false) {
+    if (data.Moderated == false && doModeration) {
         text.innerText = "Comment awaiting moderation";
         text.className += " moderation";
     }
@@ -669,12 +676,31 @@ function changePage(dir) {
     v_pageNum = targetPage;
     v_commentMax = s_commentsPerPage * v_pageNum;
     v_commentMin = v_commentMax - s_commentsPerPage;
+    updatePageNo();
     for (i = 0; i < a_commentDivs.length; i++) {
         a_commentDivs[i].style.display = "none";
         if (i >= v_commentMin && i < v_commentMax) {
             a_commentDivs[i].style.display = "block";
         }
     }
+}
+
+const c_unmodToggle = document.getElementById("toggle-unmod");
+if (c_unmodToggle) {
+    c_unmodToggle.addEventListener("change", () => {
+        v_pageNum = 1;
+        doModeration = !doModeration;
+        console.log("RANNNN");
+
+        getComments();
+    });
+}
+
+const c_pageNo = document.getElementById("comment-page-no");
+
+function updatePageNo() {
+    if (!c_pageNo) return;
+    c_pageNo.textContent = `Page ${v_pageNum} of ${v_amountOfPages}`;
 }
 
 getComments(); // Run once on page load
