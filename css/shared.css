@@ -4,38 +4,40 @@
 :root {
     --winbar-disabled: #808080;
     --winbar-highlight: #ffffff;
-    --winbar-gray: #c0c7c8;
+    --winbar-gray: #c0c0c0;
     --winbar-darkgray: #808080;
     --winbar-black: #000000;
+}
+
+.window {
+    background: var(--winbar-gray);
+    box-shadow:
+        inset -1px -1px var(--winbar-black),
+        inset 1px 1px var(--winbar-gray),
+        inset -2px -2px var(--winbar-darkgray),
+        inset 2px 2px var(--winbar-highlight);
+    padding: 3px;
 }
 
 .winbar {
     font-family: "MS UI Gothic", PixelMPlus;
     font-size: 12px;
-    height: 27px;
+    height: 21px;
     width: 100%;
     background-color: var(--winbar-disabled);
     cursor: default;
 
-    box-shadow:
-        inset -1px -1px var(--winbar-black),
-        inset 1px 1px var(--winbar-gray),
-        inset -2px -2px var(--winbar-darkgray),
-        inset 2px 2px var(--winbar-highlight),
-        inset -3px -3px var(--winbar-gray),
-        inset 3px 3px var(--winbar-gray),
-        inset -4px -4px var(--winbar-gray),
-        inset 4px 4px var(--winbar-gray);
+    padding-left: 6px;
+    padding-right: 2px;
 
-    padding: 6px;
-    padding-left: 8px;
-    clip-path: inset(0px 0px 4px 0px);
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    box-shadow: inset 0px -2px var(--winbar-gray);
 }
 
-.window.active .winbar {
+.active .winbar {
     background-color: var(--color-accent);
 }
 
@@ -43,6 +45,7 @@
     display: flex;
     align-items: center;
     gap: 3px;
+    margin-bottom: 1px;
 }
 
 .winicon {
@@ -54,6 +57,7 @@
     display: flex;
     flex-direction: rows;
     align-items: center;
+    margin-bottom: 1px;
 }
 
 .controls button {
@@ -109,25 +113,19 @@ input[type="reset"]:not(:disabled):active {
 
 .winbody {
     font-family: "MS UI Gothic", PixelMPlus;
-    width: 100%;
     background-color: var(--winbar-highlight);
-    box-shadow:
-        inset -1px -1px var(--winbar-black),
-        inset 1px 1px var(--winbar-gray),
-        inset -2px -2px var(--winbar-darkgray),
-        inset 2px 2px var(--winbar-highlight),
-        inset -3px -3px var(--winbar-gray),
-        inset 3px 3px var(--winbar-gray),
-        inset -4px -4px var(--winbar-highlight),
-        inset 4px 5px var(--winbar-gray),
-        inset -5px -5px var(--winbar-gray),
-        inset 5px 6px var(--winbar-black);
 
     padding: 12px;
-    padding-top: 13px; /* i don't fully get it but padding needs an extra px to account for the border styling */
-    margin-top: -6px;
 
     background: url(../images/ui/dark-dither-bg.png);
+}
+
+.win-inset {
+    box-shadow:
+        inset -1px -1px var(--winbar-highlight),
+        inset 1px 1px var(--winbar-darkgray),
+        inset -2px -2px var(--winbar-gray),
+        inset 2px 2px var(--winbar-black);
 }
 
 .winscroll {
@@ -185,17 +183,20 @@ input[type="reset"]:not(:disabled):active {
 
 .status-bar {
     margin: 0px 1px;
+    margin-top: 2px;
     display: flex;
     gap: 1px;
 }
 
 .status-bar-field {
     box-shadow:
-        inset -1px -1px #dfdfdf,
+        inset -1px -1px var(--winbar-highlight),
         inset 1px 1px var(--winbar-darkgray);
     flex-grow: 1;
-    padding: 2px 3px;
+    padding: 3px 3px;
     margin: 0;
+    color: var(--winbar-black);
+    font-size: 12px;
 }
 /* -------------- */
 /* Helper Classes */

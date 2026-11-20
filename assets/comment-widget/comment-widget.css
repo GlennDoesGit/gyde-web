@@ -59,21 +59,21 @@
     height: 360px;
     overflow: auto;
     padding: 0 24px;
-    background-attachment: fixed;
     font-family: "MS UI Gothic", PixelMPlus;
     font-size: 16px;
     color: white;
+    background-image: url(../../images/ui/dark-dither-bg.png);
 }
 
 #c_widget button,
 #c_widget input[type="submit"] {
-    padding: 4px 10px;
+    padding: 5px 10px;
     font-family:
         MS UI Gothic,
-        sans-serif;
+        PixelMPlus;
     text-decoration: none;
     text-align: center;
-    background-color: #c8c8c8;
+    background-color: var(--winbar-gray);
     border: none;
     box-shadow:
         inset -1px -1px var(--winbar-black),
@@ -83,9 +83,8 @@
     font-size: 12px;
 }
 
-#c_widget button:not(:disabled):active,
-input[type="submit"]:not(:disabled):active,
-input[type="reset"]:not(:disabled):active {
+#c_widget input:not(:disabled):active,
+#c_widget button:not(:disabled):active {
     box-shadow:
         inset -1px -1px var(--winbar-highlight),
         inset 1px 1px var(--winbar-black),
@@ -94,7 +93,7 @@ input[type="reset"]:not(:disabled):active {
 
 #c_widget button:disabled,
 #c_widget input[type="submit"]:disabled {
-    opacity: 60%;
+    opacity: 80%;
 }
 
 /* Input section */
@@ -103,12 +102,11 @@ input[type="reset"]:not(:disabled):active {
 }
 
 #c_widgetTitle {
-    margin-bottom: 10px;
-    padding: 5px;
+    margin-top: 16px;
     text-transform: uppercase;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 20px;
     text-align: center;
+    color: var(--color-accent);
 }
 
 .c-inputWrapper {
@@ -124,11 +122,12 @@ input[type="reset"]:not(:disabled):active {
     width: 100%;
 }
 .c-input:focus {
-    border: 1px solid #b766ff;
+    border: 1px solid var(--color-highlight);
 }
 
 .c-textInput {
     resize: vertical;
+    margin-bottom: 2px;
 }
 #c_submitButton {
     display: block;
@@ -136,63 +135,81 @@ input[type="reset"]:not(:disabled):active {
     margin-right: 0;
 }
 #c_replyingText {
-    color: white;
-    text-align: right;
+    color: var(--color-text2);
+    text-align: left;
+    margin-top: -18px;
+    font-size: 14px;
 }
 
 /* Comment section */
 .c-comment {
     margin-bottom: 15px;
-    padding: 10px;
-    border: 2px solid white;
-    background-color: #2d0b52;
+    padding: 8px;
+    background-color: var(--winbar-gray);
+    box-shadow:
+        inset -1px -1px var(--winbar-black),
+        inset 1px 1px var(--winbar-gray),
+        inset -2px -2px var(--winbar-darkgray),
+        inset 2px 2px var(--winbar-highlight);
 }
 .c-reply {
     display: block;
-    width: 90%;
+    width: 92%;
     margin-bottom: 10px;
     margin-left: auto;
     margin-right: 0;
     padding: 10px;
-    border: 2px solid white;
-    background-color: #2d0b52;
+    box-shadow:
+        inset -1px -1px var(--winbar-black),
+        inset 1px 1px var(--winbar-gray),
+        inset -2px -2px var(--winbar-darkgray),
+        inset 2px 2px var(--winbar-highlight);
 }
 .c-reply:last-child {
-    margin-bottom: 0;
+    margin-bottom: 2px;
 }
 .c-replyContainer {
-    margin: -10px;
-    margin-top: 10px;
-    padding: 10px;
-    background-color: black;
+    margin-top: 8px;
 }
 
 .c-name {
     display: inline-block;
     font-size: 14px;
     font-weight: bold;
+    margin-left: 2px;
+    color: var(--color-black);
 }
 .c-site {
+    padding-left: 0.5em;
+    font-size: 10px;
     text-transform: uppercase;
-    text-decoration: none;
-    color: #b766ff;
+    text-decoration: underline;
+    color: var(--color-link3);
 }
 .c-site:hover {
-    color: white;
+    color: var(--color-link4);
 }
 .c-timestamp {
+    color: var(--color-text3);
     float: right;
-    font-size: 14px;
+    font-size: 12px;
+    padding-top: 2px;
 }
 .c-text {
-    margin: 0;
-    margin-left: -10px;
-    margin-right: -10px;
-    padding: 10px;
-    font-size: 14px;
-    text-align: justify;
-    color: white;
-    background-color: black;
+    font-family:
+        MS UI Gothic,
+        sans-serif;
+    font-size: 12px;
+
+    color: var(--winbar-black);
+    background-color: var(--winbar-highlight);
+    box-shadow:
+        inset -1px -1px var(--winbar-highlight),
+        inset 1px 1px var(--winbar-gray);
+
+    margin: 6px 0;
+    margin-bottom: 8px;
+    padding: 8px;
 }
 
 /* Pagination */
@@ -200,11 +217,9 @@ input[type="reset"]:not(:disabled):active {
     text-align: center;
 }
 .c-replyButton {
-    margin-top: 10px;
-    margin-right: 4px;
+    align-self: right;
 }
 .c-expandButton {
-    margin-top: 10px;
     margin-left: 4px;
 }
 .c-paginationButton {
@@ -220,10 +235,44 @@ input[type="reset"]:not(:disabled):active {
     margin-bottom: 4px;
 }
 
+.comments {
+    margin-bottom: 2rem;
+}
+
 .comments .winbody {
     background-image: none;
     background-color: var(--winbar-gray);
 
-    padding: 0 4px;
-    padding-bottom: 14px;
+    padding: 0;
+    padding-bottom: 1px;
+}
+
+.c_form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 22px;
+}
+
+#c_container {
+    margin-bottom: 24px;
+}
+
+.comments .win-inset {
+    padding: 2px;
+}
+
+.c-websiteInput {
+    width: 180px;
+}
+
+.c-note {
+    text-align: center;
+    padding: 4px;
+    margin-bottom: 12px;
+    color: var(--color-text2);
+}
+
+.moderation {
+    color: var(--color-text3);
+    font-style: italic;
 }

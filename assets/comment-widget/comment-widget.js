@@ -40,7 +40,7 @@ const s_maxLength = 500; // The max character length of a comment
 const s_maxLengthName = 24; // The max character length of a name
 const s_commentsOpen = true; // Change to false if you'd like to close your comment section site-wide (Turn it off on Google Forms too!)
 const s_collapsedReplies = true; // True for collapsed replies with a button, false for replies to display automatically
-const s_longTimestamp = false; // True for a date + time, false for just the date
+const s_longTimestamp = true; // True for a date + time, false for just the date
 let s_includeUrlParameters = false; // Makes new comment sections on pages with URL parameters when set to true (If you don't know what this does, leave it disabled)
 const s_fixRarebitIndexPage = false; // If using Rarebit, change to true to make the index page and page 1 of your webcomic have the same comment section
 
@@ -54,7 +54,7 @@ const s_filteredWords = [
 ];
 
 // Text - Change what messages/text appear on the form and in the comments section (Mostly self explanatory)
-const s_widgetTitle = "Comment Section";
+const s_widgetTitle = "Comments";
 const s_nameFieldLabel = "Name";
 const s_websiteFieldLabel = "Website (Optional)";
 const s_textFieldLabel = "Write something...";
@@ -96,6 +96,7 @@ const v_mainHtml = `
 `;
 const v_formHtml = `
     <h2 id="c_widgetTitle">${s_widgetTitle}</h2>
+    <p class="c-note">Be civil and be kind.</p>
 
     <div class="name-web">
         <div id="c_nameWrapper" class="c-inputWrapper">
@@ -321,8 +322,14 @@ function displayComments(comments) {
         let button = document.createElement("button");
         button.innerHTML = s_replyButtonText;
         button.value = comment.id;
-        button.setAttribute("onclick", `openReply(this.value)`);
         button.className = "c-replyButton";
+
+        if (comments[i].Moderated == false) {
+            button.disabled = true;
+        } else {
+            button.setAttribute("onclick", `openReply(this.value)`);
+        }
+
         comment.appendChild(button);
 
         // Choose whether to display or not based on page number
@@ -447,6 +454,7 @@ function createComment(data) {
         let site = document.createElement("a");
         site.innerText = s_websiteText;
         site.href = data.Website;
+        site.target = "_blank";
         site.className = "c-site";
         if (data.Moderated == false) {
             site.innerText = "";
@@ -464,6 +472,7 @@ function createComment(data) {
     text.className = "c-text";
     if (data.Moderated == false) {
         text.innerText = "Comment awaiting moderation";
+        text.className += " moderation";
     }
     comment.appendChild(text);
 
@@ -479,8 +488,18 @@ function convertTimestamp(timestamp) {
     if (s_daylightSavings) {
         offsetDate = isDST(offsetDate);
     }
-    return [offsetDate.toLocaleString(), offsetDate.toLocaleDateString()];
+
+    const locale = navigator.language;
+
+    const dateStr = offsetDate.toLocaleDateString(locale);
+    const timeStr = offsetDate.toLocaleTimeString(locale, {
+        hour: "2-digit",
+        minute: "2-digit",
+    });
+
+    return [`${dateStr} @ ${timeStr}`, dateStr];
 }
+
 // DST checker
 function isDST(date) {
     const dstStart = [getMonthNum(s_dstStart[0]), getDayNum(s_dstStart[1]), s_dstStart[2], s_dstStart[3]];
