@@ -1,5 +1,5 @@
 body {
-    background-image: url(../images/background/snowforest.jpg);
+    background-image: url(../images/background/ds.png);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -7,24 +7,39 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.go-back {
-    min-width: 240px;
-    position: fixed;
-    bottom: 4em;
-    left: 50%;
-    transform: translateX(-50%);
-    background-image: url(../images/ui/dark-dither-bg.png);
-    padding: 1.25rem 3rem;
+.wip {
+    padding: 20px;
+    padding-bottom: 24px;
+    color: white;
+    background-color: black;
+    outline: solid 1px white;
+    width: fit-content;
     text-align: center;
-    font-size: 18px;
+    box-shadow: 0px 0px 24px black;
 
-    outline-style: dashed;
-    outline-width: 2px;
-    outline-color: var(--color-accent);
-}
+    h1 {
+        font-family: CrimsonPro;
+    }
 
-.go-back p {
-    padding: 8px 0px;
+    p {
+        font-family:
+            MS UI Gothic,
+            PixelMPlus;
+        padding: 16px;
+    }
+
+    a {
+        padding-top: 6px;
+        font-size: 18px;
+
+        &:hover {
+            color: gold;
+        }
+    }
 }

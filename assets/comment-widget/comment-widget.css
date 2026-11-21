@@ -129,18 +129,31 @@
     resize: vertical;
     margin-bottom: 2px;
 }
-#c_submitButton {
-    display: block;
-    margin-left: auto;
-    margin-right: 0;
+#c_submitRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
 }
+#c_submitButton {
+    margin-left: auto; /* keeps the button on the right even when the text is hidden */
+    flex-shrink: 0;
+}
+#c_cancelReply {
+    flex-shrink: 0;
+}
+
 #c_replyingText {
     color: var(--color-text2);
     text-align: left;
-    margin-top: -18px;
     font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0; /* lets the ellipsis work inside flex */
+    flex: 1;
 }
-
 /* Comment section */
 .c-comment {
     margin-bottom: 15px;
@@ -181,8 +194,7 @@
 }
 .c-site {
     padding-left: 0.5em;
-    font-size: 10px;
-    text-transform: uppercase;
+    font-size: 12px;
     text-decoration: underline;
     color: var(--color-link3);
 }
@@ -280,4 +292,24 @@
 .unmod-checkbox {
     top: 14px;
     font-size: 12px;
+}
+
+.c-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+
+    box-sizing: border-box;
+    width: 24px;
+    height: 14px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    padding: 0;
+    line-height: 1;
+
+    font-size: 11px;
+    font-weight: 900;
+    background-color: rgb(181, 15, 15);
+    cursor: default;
 }

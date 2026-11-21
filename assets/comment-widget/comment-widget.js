@@ -70,6 +70,9 @@ const s_replyingText = "Replying to"; // The text that displays while the user i
 const s_expandRepliesText = "Show Replies";
 const s_leftButtonText = "<<";
 const s_rightButtonText = ">>";
+const s_cancelReplyText = "Cancel";
+const s_badgeName = "Gyde";
+const s_badgeText = "WM";
 
 /*
     DO NOT edit below this point unless you are confident you know what you're doing!
@@ -115,7 +118,11 @@ const v_formHtml = `
         <input name="entry.${s_moderatedId}" id="entry.${s_moderatedId}" type="hidden" readonly value="false">
     </div>
 
-    <input id="c_submitButton" name="c_submitButton" type="submit" value="${s_submitButtonLabel}" disabled>
+    <div id="c_submitRow">
+        <button type="button" id="c_cancelReply" style="display: none;">${s_cancelReplyText}</button>
+        <span id="c_replyingText" style="display: none;"></span>
+        <input id="c_submitButton" name="c_submitButton" type="submit" value="${s_submitButtonLabel}" disabled>
+    </div>
 
     <input type="checkbox" id="toggle-unmod">
     <label class="unmod-checkbox" for="toggle-unmod">Show unmoderatted comments</label>
@@ -170,11 +177,8 @@ c_pageInput.name = c_pageInput.id;
 c_form.appendChild(c_pageInput);
 
 // Add the "Replying to..." text to document
-let c_replyingText = document.createElement("span");
-c_replyingText.style.display = "none";
-c_replyingText.id = "c_replyingText";
-c_form.appendChild(c_replyingText);
-c_replyingText = document.getElementById("c_replyingText");
+let c_replyingText = document.getElementById("c_replyingText") || document.createElement("span");
+const c_cancelReply = document.getElementById("c_cancelReply") || document.createElement("button");
 
 // Add the invisible reply input to document
 let c_replyInput = document.createElement("input");
@@ -208,8 +212,7 @@ function getComments() {
     c_submitButton.disabled;
 
     // Reset reply stuff to default
-    c_replyingText.style.display = "none";
-    c_replyInput.value = "";
+    resetReply();
 
     // Clear input fields too
     if (s_commentsOpen) {
@@ -448,6 +451,14 @@ function createComment(data) {
     if (data.Moderated == false && doModeration) {
         name.innerText = "Guest";
     }
+    const isUnmoderated = data.Moderated == false && doModeration;
+    if (data.Name.trim() === s_badgeName && !isUnmoderated) {
+        const badge = document.createElement("span");
+        badge.innerText = s_badgeText;
+        badge.className = "c-badge";
+        badge.setAttribute("data-tooltip", "Webmaster");
+        comment.appendChild(badge);
+    }
     comment.appendChild(name);
 
     // Timestamp
@@ -459,9 +470,11 @@ function createComment(data) {
     // Website URL, if one was provided
     if (data.Website) {
         let site = document.createElement("a");
-        site.innerText = s_websiteText;
+        const displayUrl = data.Website.replace(/^https?:\/\//i, "").replace(/\/$/, "");
+        site.innerText = `[${displayUrl}]`;
         site.href = data.Website;
         site.target = "_blank";
+        site.rel = "noopener noreferrer";
         site.className = "c-site";
         if (data.Moderated == false && doModeration) {
             site.innerText = "";
@@ -617,13 +630,12 @@ const link = document.createElement("a");
 link.href = "#c_inputDiv";
 function openReply(id) {
     if (c_replyingText.style.display == "none") {
-        c_replyingText.innerHTML = s_replyingText + ` ${id.split("|--|")[0]}...`;
+        c_replyingText.textContent = s_replyingText + ` ${id.split("|--|")[0]}...`;
         c_replyInput.value = id;
         c_replyingText.style.display = "block";
+        c_cancelReply.style.display = "";
     } else {
-        c_replyingText.innerHTML = "";
-        c_replyInput.value = "";
-        c_replyingText.style.display = "none";
+        resetReply();
     }
     link.click(); // Jump to the space to type
 }
@@ -702,5 +714,15 @@ function updatePageNo() {
     if (!c_pageNo) return;
     c_pageNo.textContent = `Page ${v_pageNum} of ${v_amountOfPages}`;
 }
+
+// Clears any reply in progress and hides the reply UI
+function resetReply() {
+    c_replyingText.style.display = "none";
+    c_replyingText.textContent = "";
+    c_replyInput.value = "";
+    c_cancelReply.style.display = "none";
+}
+
+c_cancelReply.addEventListener("click", resetReply);
 
 getComments(); // Run once on page load

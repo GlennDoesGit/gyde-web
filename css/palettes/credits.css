@@ -1,0 +1,20 @@
+:root {
+    --color-highlight: rgb(148, 210, 255);
+    --color-highlight2: #b1dde4;
+
+    --color-accent: #e4e0d4;
+    --color-black: #352525;
+
+    --color-text: #f1f1f1;
+    --color-text2: #ffd79e;
+    --color-text3: #68767e;
+    --color-link: #063b7b;
+    --color-link2: #406bb1;
+
+    --color-accent-opc: #25352bcb;
+
+    /* Extra or Misc */
+    --color-link3: #3b526e;
+    --color-link4: #4b73a7;
+    --color-text4: #444d53;
+}

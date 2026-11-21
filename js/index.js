@@ -268,3 +268,40 @@ const cpuField = document.getElementById("cpu-use");
 setInterval(() => {
     cpuField.textContent = `CPU Usage: ${Math.floor(3 + Math.random() * 5)}%`;
 }, 1500);
+
+// NAV CATEGORY TOOLTIP
+const categoryTooltip = document.getElementById("category-tooltip");
+
+if (categoryTooltip) {
+    document.querySelectorAll("nav a.anchor[data-tooltip]").forEach((link) => {
+        function showTooltip() {
+            categoryTooltip.textContent = link.dataset.tooltip;
+            categoryTooltip.hidden = false;
+        }
+
+        function hideTooltip() {
+            categoryTooltip.hidden = true;
+        }
+
+        link.addEventListener("mouseenter", showTooltip);
+        link.addEventListener("mouseleave", hideTooltip);
+        link.addEventListener("focus", showTooltip);
+        link.addEventListener("blur", hideTooltip);
+    });
+}
+
+const siteButtons = [
+    { file: "gydes-88x31.gif", alt: "Gyde's Web" },
+    { file: "gydesite-btn2.gif", alt: "Gyde's Web" },
+];
+
+const buttonTextarea = document.getElementById("site-button-txt");
+
+document.querySelectorAll(".site-button-img").forEach((img) => {
+    img.addEventListener("click", () => {
+        const file = img.dataset.button;
+        buttonTextarea.value = `<a href="https://gyde.site/"><img src="https://gyde.site/images/buttons/${file}" alt="Gyde's Site"></a>`;
+    });
+});
+
+buttonTextarea.addEventListener("focus", () => buttonTextarea.select());

@@ -124,24 +124,35 @@ header {
     margin-left: -70px;
     margin-bottom: -70px;
 
-    top: -30px;
-    right: -80px;
+    top: -15px;
+    right: -75px;
+}
+
+.updates {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 .update-button-grp {
     display: flex;
     gap: 12px;
+    height: 150px;
 }
 
 .updates .winbody {
+    flex: 1;
+    min-height: 0;
     padding: 2px;
+    display: flex;
+    flex-direction: column;
 }
 
 .update-log {
-    max-height: 100px;
+    flex: 1;
+    min-height: 0;
     overflow-y: scroll;
 }
-
 .update-entry {
     padding: 8px 16px;
 }
@@ -162,21 +173,31 @@ header {
     font-size: 16px;
 }
 
+/* --------- */
+/* BUTTONS!! */
+/* --------- */
+
 .mybutton {
-    width: 200px;
     display: flex;
     flex-direction: column;
 
     img {
+        padding: 2px;
         text-align: center;
-        padding: 6px;
-        padding-top: 0px;
+        transform: scale(1);
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.1);
+            z-index: 5;
+        }
     }
 
     textarea {
-        width: 120px;
-        height: 42px;
+        width: 160px;
+        height: 48px;
         resize: none;
+        margin-top: 4px;
     }
 }
 
@@ -196,21 +217,6 @@ header {
 }
 .compass-ico {
     background-image: url(../images/icons/compass.png);
-}
-
-/* --------- */
-/* BUTTONS!! */
-/* --------- */
-.buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 500px;
-
-    gap: 8px;
-    padding: 4px 0;
-
-    image-rendering: pixelated;
 }
 
 /* ------ */
@@ -233,6 +239,36 @@ header {
 .status .winbody {
     background-image: url(../images/ui/dark-dither-bg.png);
     font-size: 14px;
+}
+
+.status-mood-container {
+    background-color: var(--color-accent);
+    outline: solid 1px var(--color-text);
+    width: fit-content;
+    margin-bottom: 6px;
+    padding: 2px;
+}
+
+#status-mood-img {
+    margin-left: 3px;
+    box-shadow: 1px 1px 0px var(--color-black);
+    height: 8px;
+}
+
+#status-mood {
+    font-size: 12px;
+    padding: 0px 2px;
+}
+
+#status-date {
+    color: var(--color-text2);
+}
+
+.status-day-log {
+    margin-top: 4px;
+    a {
+        float: right;
+    }
 }
 
 /* ------- */

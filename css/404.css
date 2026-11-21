@@ -27,10 +27,7 @@ body {
 }
 
 .pulp .winbody {
-    position: relative;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 5px;
+    padding: 2px;
 }
 
 .pulp .winbody img {
@@ -81,8 +78,6 @@ body {
 }
 
 .answer {
-    background-image: url(/images/ui/dark-dither-bg.png);
-
     font-size: 16px;
     padding: 8px;
 
