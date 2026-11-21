@@ -18,7 +18,7 @@ jobs:
         with:
           API_KEY: ${{ secrets.NEKOWEB_API_KEY }}
           BUILD_DIR: '.'
-          DEPLOY_DIR: '/'
+          DEPLOY_DIR: '/gyde.nekoweb.org/'
           CLEANUP: 'True'
           DELAY: '0.5'
           NEKOWEB_PAGENAME: 'gyde'
