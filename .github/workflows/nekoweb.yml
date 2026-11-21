@@ -18,8 +18,8 @@ jobs:
         with:
           API_KEY: ${{ secrets.NEKOWEB_API_KEY }}
           BUILD_DIR: '.'
-          DEPLOY_DIR: '/gyde.nekoweb.org/'
-          CLEANUP: 'True'
+          DEPLOY_DIR: '/gyde.nekoweb.org'
+          CLEANUP: 'False'
           DELAY: '0.5'
           NEKOWEB_PAGENAME: 'gyde'
           ENCRYPTION_KEY: ${{ secrets.NEKOWEB_ENCRYPTION_KEY }}
