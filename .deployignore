@@ -1,0 +1,5 @@
+.github
+.git
+.gitattributes
+.deployignore
+wrangler.jsonc
