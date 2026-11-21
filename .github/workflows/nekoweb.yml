@@ -4,21 +4,21 @@ on:
   push:
     branches:
       - main
-
+          
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
-
+    name: deploy2nekoweb
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Deploy to Nekoweb
-        uses: mp-pinheiro/nekoweb-deploy@0.3.0
+        
+      # your build step here
+        
+      - name: deploy2nekoweb
+        uses: indiefellas/deploy2nekoweb@main
         with:
-          API_KEY: ${{ secrets.NEKOWEB_API_KEY }}
-          BUILD_DIR: '.'
-          DEPLOY_DIR: '/gyde.nekoweb.org'
-          CLEANUP: 'False'
-          DELAY: '0.5'
-          NEKOWEB_PAGENAME: 'gyde'
+          nekoweb-api-key: ${{ secrets.NEKOWEB_API_KEY }}
+          nekoweb-domain: 'gyde.nekoweb.org'
+          nekoweb-username: 'gyde'
+          directory: '.'
