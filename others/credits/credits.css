@@ -6,6 +6,11 @@
     --ar: 1.7778;
     --content-left: 0.45;
     --pad: 24px;
+
+    --w: min(max(100vw, calc(100vh * var(--ar))), calc((100vw - var(--pad)) / (1 - var(--content-left))));
+    --dw: 1600px;
+    --s: tan(atan2(var(--w), var(--dw)));
+    --persp: 1.75;
 }
 
 .screen {
@@ -13,13 +18,9 @@
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-
     aspect-ratio: var(--ar);
-
-    width: min(max(100vw, calc(100vh * var(--ar))), calc((100vw - var(--pad)) / (1 - var(--content-left))));
-
-    perspective: 2800px;
-    container-type: inline-size;
+    width: var(--w);
+    perspective: calc(var(--w) * var(--persp));
 }
 
 .computer-img {
@@ -38,8 +39,6 @@
     left: 77%;
     width: 8%;
     height: 15%;
-
-    color: red;
 }
 
 .go-back a {
@@ -51,36 +50,43 @@
 .pc-content {
     position: absolute;
     z-index: 1;
-    top: 24%;
-    left: 43%;
-    width: 41%;
-    height: 45%;
+    left: 64%;
+    top: 46%;
+    width: calc(var(--dw) * 0.48);
+    height: calc(var(--dw) / var(--ar) * 0.45);
     overflow: hidden;
 
-    transform: rotateY(-40deg) rotateX(6deg) rotateZ(-1.7deg);
+    /* this took way too long to align to the screen there must have been an easier way bro */
     transform-origin: center;
+    transform: translate(-50%, -50%) rotateY(-48deg) rotateX(4.2deg) rotateZ(-1.25deg) scale(var(--s));
 
-    background-image: url("images/pattern\ 309.jpg");
+    background-image: url("images/pattern 309.jpg");
+
+    font-size: 22.4px;
+    line-height: 1.4;
 
     h1 {
-        font-size: 2cqw;
+        font-size: 32px;
         color: var(--color-text2);
+        margin: 0 0 0.4em;
         padding-top: 12px;
     }
 
     p {
-        font-size: 1.4cqw;
+        margin: 0 0 1em;
         padding: 6px;
     }
 }
 
 .screen-content {
     position: absolute;
-    padding: 2.5em;
-    overflow: scroll;
-    scrollbar-width: thin;
     inset: 0 4% 0 0;
+    padding: 40px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
 }
+
 /* credit to: https://gist.github.com/lmas/6a1bd445bc7a7145245085f4a740d3f5 */
 .crt {
     position: absolute;
@@ -88,26 +94,22 @@
     z-index: 10;
     pointer-events: none;
     overflow: hidden;
-    --scan-size: 0.14cqw;
+    --scan-size: 2px;
 }
 
 /*This adds a "crt scanlines" effect to the screen*/
 .crt::before {
-    content: " ";
-    display: block;
+    content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-    background-size: 100% var(--scan-size);
     z-index: 2;
     pointer-events: none;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% var(--scan-size);
     animation: scanlines-up 2s linear infinite;
 }
 
 @keyframes scanlines-up {
-    from {
-        background-position: 0 0;
-    }
     to {
         background-position: 0 calc(var(--scan-size) * -10);
     }
@@ -115,14 +117,13 @@
 
 /*This adds a "flickering screen" effect*/
 .crt::after {
-    content: " ";
-    display: block;
+    content: "";
     position: absolute;
     inset: 0;
-    background: rgba(18, 16, 16, 0.1);
-    opacity: 0;
     z-index: 2;
     pointer-events: none;
+    background: rgba(18, 16, 16, 0.1);
+    opacity: 0;
     animation: flicker 0.15s infinite;
 }
 
@@ -193,135 +194,82 @@
 }
 
 /*Adds a "color separation flicker" effect to all text*/
-.crt-colorsep {
-    animation: textShadow 3s infinite;
+@property --sep {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
 }
 
-@keyframes textShadow {
+.crt-colorsep {
+    text-shadow:
+        calc(var(--sep) * 1px) 0 1px rgba(0, 30, 255, 0.5),
+        calc(var(--sep) * -1px) 0 1px rgba(255, 0, 80, 0.3),
+        0 0 3px;
+    animation: colorsep 3s infinite;
+}
+
+@keyframes colorsep {
     0% {
-        text-shadow:
-            0.44px 0 1px rgba(0, 30, 255, 0.5),
-            -0.44px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 0.44;
     }
     5% {
-        text-shadow:
-            1.79px 0 1px rgba(0, 30, 255, 0.5),
-            -1.79px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 1.79;
     }
     10% {
-        text-shadow:
-            0.03px 0 1px rgba(0, 30, 255, 0.5),
-            -0.03px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 0.03;
     }
     15% {
-        text-shadow:
-            0.4px 0 1px rgba(0, 30, 255, 0.5),
-            -0.4px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 0.4;
     }
     20% {
-        text-shadow:
-            2.48px 0 1px rgba(0, 30, 255, 0.5),
-            -2.48px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 2.48;
     }
     25% {
-        text-shadow:
-            1.61px 0 1px rgba(0, 30, 255, 0.5),
-            -1.61px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 1.61;
     }
     30% {
-        text-shadow:
-            0.7px 0 1px rgba(0, 30, 255, 0.5),
-            -0.7px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 0.7;
     }
     35% {
-        text-shadow:
-            1.9px 0 1px rgba(0, 30, 255, 0.5),
-            -1.9px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 1.9;
     }
     40% {
-        text-shadow:
-            2.87px 0 1px rgba(0, 30, 255, 0.5),
-            -2.87px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 2.87;
     }
     45% {
-        text-shadow:
-            2.23px 0 1px rgba(0, 30, 255, 0.5),
-            -2.23px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 2.23;
     }
     50% {
-        text-shadow:
-            0.08px 0 1px rgba(0, 30, 255, 0.5),
-            -0.08px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 0.08;
     }
     55% {
-        text-shadow:
-            2.38px 0 1px rgba(0, 30, 255, 0.5),
-            -2.38px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 2.38;
     }
     60% {
-        text-shadow:
-            2.2px 0 1px rgba(0, 30, 255, 0.5),
-            -2.2px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 2.2;
     }
     65% {
-        text-shadow:
-            2.86px 0 1px rgba(0, 30, 255, 0.5),
-            -2.86px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 2.86;
     }
     70% {
-        text-shadow:
-            0.49px 0 1px rgba(0, 30, 255, 0.5),
-            -0.49px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 0.49;
     }
     75% {
-        text-shadow:
-            1.89px 0 1px rgba(0, 30, 255, 0.5),
-            -1.89px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 1.89;
     }
     80% {
-        text-shadow:
-            0.08px 0 1px rgba(0, 30, 255, 0.5),
-            -0.08px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 0.08;
     }
     85% {
-        text-shadow:
-            0.1px 0 1px rgba(0, 30, 255, 0.5),
-            -0.1px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 0.1;
     }
     90% {
-        text-shadow:
-            3.44px 0 1px rgba(0, 30, 255, 0.5),
-            -3.44px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 3.44;
     }
     95% {
-        text-shadow:
-            2.18px 0 1px rgba(0, 30, 255, 0.5),
-            -2.18px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 2.18;
     }
     100% {
-        text-shadow:
-            2.62px 0 1px rgba(0, 30, 255, 0.5),
-            -2.62px 0 1px rgba(255, 0, 80, 0.3),
-            0 0 3px;
+        --sep: 2.62;
     }
 }

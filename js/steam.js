@@ -1,7 +1,7 @@
 const GAME_API = "https://api.gyde.site/v1/steam/recent/";
 const MAX_GAMES = 2;
-const COL_ONLINE = "#60acca";
-const COL_PLAYING = "#9fd8a8";
+const COL_ONLINE = "#79beda";
+const COL_PLAYING = "#a6e4b0";
 const COL_OFFLINE = "#c56666";
 
 function renderProfile(data) {

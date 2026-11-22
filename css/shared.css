@@ -27,7 +27,8 @@
         inset -1px -1px var(--winbar-black),
         inset 1px 1px var(--winbar-gray),
         inset -2px -2px var(--winbar-darkgray),
-        inset 2px 2px var(--winbar-highlight);
+        inset 2px 2px var(--winbar-highlight),
+        3px 3px 6px #00000088;
     padding: 3px;
 }
 
@@ -46,7 +47,7 @@
     justify-content: space-between;
     align-items: center;
 
-    box-shadow: inset 0px -2px var(--winbar-gray);
+    box-shadow: inset -1px -2px var(--winbar-gray);
 }
 
 .active .winbar {
@@ -70,6 +71,7 @@
     flex-direction: rows;
     align-items: center;
     margin-bottom: 1px;
+    margin-right: 1px;
 }
 
 .controls button {

@@ -303,5 +303,3 @@ document.querySelectorAll(".site-button-img").forEach((img) => {
         buttonTextarea.value = `<a href="https://gyde.site/"><img src="https://gyde.site/images/buttons/${file}" alt="Gyde's Site"></a>`;
     });
 });
-
-buttonTextarea.addEventListener("focus", () => buttonTextarea.select());

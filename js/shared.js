@@ -103,3 +103,47 @@ document.addEventListener("mousedown", (e) => {
         });
     }
 });
+
+// Win98 window dragging
+let topZ = 900;
+
+function makeDraggable(win) {
+    const bar = win.querySelector(".winbar");
+    if (!bar) return;
+
+    let offsetX = 0;
+    let offsetY = 0;
+
+    bar.addEventListener("pointerdown", (e) => {
+        if (e.target.closest(".controls")) return;
+
+        const rect = win.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+
+        win.style.zIndex = ++topZ;
+        bar.setPointerCapture(e.pointerId);
+
+        const onMove = (ev) => {
+            const maxX = window.innerWidth - win.offsetWidth;
+            const maxY = window.innerHeight - win.offsetHeight;
+            const x = Math.min(Math.max(0, ev.clientX - offsetX), Math.max(0, maxX));
+            const y = Math.min(Math.max(0, ev.clientY - offsetY), Math.max(0, maxY));
+            win.style.left = `${x}px`;
+            win.style.top = `${y}px`;
+        };
+
+        const onUp = (ev) => {
+            bar.releasePointerCapture(ev.pointerId);
+            bar.removeEventListener("pointermove", onMove);
+            bar.removeEventListener("pointerup", onUp);
+            bar.removeEventListener("pointercancel", onUp);
+        };
+
+        bar.addEventListener("pointermove", onMove);
+        bar.addEventListener("pointerup", onUp);
+        bar.addEventListener("pointercancel", onUp);
+    });
+}
+
+document.querySelectorAll(".window.draggable").forEach(makeDraggable);

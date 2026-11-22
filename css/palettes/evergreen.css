@@ -1,6 +1,6 @@
 :root {
-    --color-highlight: #eedbb3;
-    --color-highlight2: #b1dde4;
+    --color-highlight: #fce4b1;
+    --color-highlight2: #a2dae2;
 
     --color-accent: #5f6b53;
     --color-black: #25352b;
@@ -17,4 +17,5 @@
     --color-link3: #3b526e;
     --color-link4: #4b73a7;
     --color-text4: #444d53;
+    --mood-bg: #445139;
 }
