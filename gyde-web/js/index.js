@@ -42,14 +42,14 @@ function getWindDescription(speed) {
 // Weather groups name and group based on WMO 4677 codes.
 const weatherGroups = [
     {
-        range: [0],
+        range: [0, 0],
         desc: "Clear Sky",
         iconDay: "clear-day.png",
         iconNight: "clear-night.png",
     },
 
     {
-        range: [1],
+        range: [1, 1],
         desc: "Mostly Clear",
         iconDay: "mostly-clear-day.png",
         iconNight: "mostly-clear-night.png",
