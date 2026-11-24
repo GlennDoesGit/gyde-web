@@ -71,8 +71,7 @@ const s_expandRepliesText = "Show Replies";
 const s_leftButtonText = "<<";
 const s_rightButtonText = ">>";
 const s_cancelReplyText = "Cancel";
-const s_badgeName = "Gyde";
-const s_badgeText = "WM";
+const s_wmName = "Gyde";
 
 /*
     DO NOT edit below this point unless you are confident you know what you're doing!
@@ -451,13 +450,9 @@ function createComment(data) {
     if (data.Moderated == false && doModeration) {
         name.innerText = "Guest";
     }
-    const isUnmoderated = data.Moderated == false && doModeration;
-    if (data.Name.trim() === s_badgeName && !isUnmoderated) {
-        const badge = document.createElement("span");
-        badge.innerText = s_badgeText;
-        badge.className = "c-badge";
-        badge.setAttribute("data-tooltip", "Webmaster");
-        comment.appendChild(badge);
+
+    if (data.Name.trim() === s_wmName && data.Moderated) {
+        name.className += " c-wm";
     }
     comment.appendChild(name);
 
