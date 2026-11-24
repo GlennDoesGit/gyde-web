@@ -16,4 +16,4 @@ jobs:
           nekoweb-api-key: ${{ secrets.NEKOWEB_API_KEY }}
           nekoweb-domain: 'gyde.nekoweb.org'
           nekoweb-username: 'gyde'
-          directory: '.'
+          directory: 'gyde-web'
