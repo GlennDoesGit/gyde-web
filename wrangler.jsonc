@@ -3,7 +3,7 @@
   "name": "gyde-web",
   "compatibility_date": "2026-11-19",
   "assets": {
-    "directory": "./",
+    "directory": "./gyde-web",
     "not_found_handling": "404-page"
   }
 }
