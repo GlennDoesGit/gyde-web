@@ -217,52 +217,124 @@ function hash(n) {
 }
 
 function PickWord() {
-    const dayNum = Math.floor(Date.UTC(currTime.getFullYear(), currTime.getMonth(), currTime.getDate()) / 86400000);
+    const dayNum = Math.round(Date.UTC(currTime.getFullYear(), currTime.getMonth(), currTime.getDate()) / 86400000);
 
     return TodayWords[hash(dayNum) % TodayWords.length];
 }
 
+const HOLIDAYS = [
+    // FORMAT: name, date / time of celeb, holiday or observance, country
+
+    // holidays
+    { name: "New Year's", date: "01-01", type: "holiday" },
+    { name: "Easter", easter: true, type: "holiday" },
+    { name: "Independence Day", date: "07-04", type: "holiday", country: "US" },
+    { name: "Labor Day", month: 9, weekday: 0, nth: 1, type: "holiday", country: "US" },
+    { name: "Thanksgiving", month: 11, weekday: 3, nth: 4, type: "holiday", country: "US" },
+    { name: "Christmas", date: "12-25", type: "holiday" },
+
+    // observances
+    { name: "Valentine's Day", date: "02-14", type: "observance" },
+    { name: "April Fools'", date: "04-01", type: "observance" },
+    { name: "Earth Day", date: "04-22", type: "observance" },
+    { name: "Mother's Day", month: 5, weekday: 6, nth: 2, type: "observance" },
+    { name: "Father's Day", month: 6, weekday: 6, nth: 3, type: "observance" },
+    { name: "Halloween", date: "10-31", type: "observance" },
+    { name: "Christmas Eve", date: "12-24", type: "observance" },
+    { name: "New Year's Eve", date: "12-31", type: "observance" },
+];
+
+// wild formula for calculating easter
+// https://en.wikipedia.org/wiki/Date_of_Easter#Anonymous_Gregorian_algorithm
+function easter(year) {
+    const a = year % 19;
+    const b = Math.floor(year / 100);
+    const c = year % 100;
+    const d = Math.floor(b / 4);
+    const e = b % 4;
+    const f = Math.floor((b + 8) / 25);
+    const g = Math.floor((b - f + 1) / 3);
+    const h = (19 * a + b - d - g + 15) % 30;
+    const i = Math.floor(c / 4);
+    const k = c % 4;
+    const l = (32 + 2 * e + 2 * i - h - k) % 7;
+    const m = Math.floor((a + 11 * h + 22 * l) / 451);
+    const month = Math.floor((h + l - 7 * m + 114) / 31);
+    const day = ((h + l - 7 * m + 114) % 31) + 1;
+    return { month, day };
+}
+
+function dayOf(h, year, month) {
+    if (h.easter) {
+        const e = easter(year);
+        return e.month === month ? e.day : null;
+    }
+    if (h.date) {
+        const [m, d] = h.date.split("-").map(Number);
+        return m === month ? d : null;
+    }
+    if (h.month !== month) return null;
+
+    const weekday = (h.weekday + 1) % 7;
+    const firstDow = new Date(year, month - 1, 1).getDay();
+    return 1 + ((weekday - firstDow + 7) % 7) + (h.nth - 1) * 7;
+}
+
 function SetDate() {
-    let currYear = currTime.getFullYear();
-    let currMonth = currTime.getMonth();
-    let todaysWord = PickWord();
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const today = now.getDate();
+    const todaysWord = PickWord();
 
-    let html = "<h2>" + Months[currMonth] + '</h2><table id="date-table">';
-
-    html += '<tr class="date-days"><td>M</td><td>T</td><td>W</td><td>T</td><td>F</td><td>S</td><td>S</td></tr><tr>';
-
-    // find day of week of first day in the month
-    let firstday = new Date(currYear, currMonth, 1).getDay();
-    if (firstday == 0) {
-        firstday = 7;
+    const events = {};
+    for (const h of HOLIDAYS) {
+        const d = dayOf(h, year, month);
+        if (!d) continue;
+        if (!events[d]) events[d] = [];
+        events[d].push(h);
     }
 
-    // make blank cells until the first day of the month
-    for (let i = 1; i < firstday; i++) {
-        html += "<td></td>";
-    }
+    const daysInMonth = new Date(year, month, 0).getDate();
+    const offset = (new Date(year, month - 1, 1).getDay() + 6) % 7;
+    const monthName = now.toLocaleString("en-US", { month: "long" });
 
-    // find number of days in a month
-    let daysInMonth = new Date(currYear, currMonth + 1, 0).getDate();
+    let html = `<h2>${monthName}</h2><table id="date-table">
+    <tr class="date-days"><td>M</td><td>T</td><td>W</td><td>T</td><td>F</td><td>S</td><td>S</td></tr><tr>`;
 
-    // loop that makes all the rows and columns for the date
+    for (let i = 0; i < offset; i++) html += "<td></td>";
+
     for (let d = 1; d <= daysInMonth; d++) {
-        if (d == currTime.getDate()) {
-            html += '<td id="today" data-tooltip="Do something <strong>' + todaysWord + '</strong> today!">' + d + "</td>";
-        } else {
-            html += "<td>" + d + "</td>";
-        }
-        if ((d + firstday - 1) % 7 == 0) {
-            html += "</tr><tr>";
-        }
-    }
-    html += "</tr></table>";
+        const items = events[d] || [];
+        const isToday = d === today;
 
+        let tips = [];
+        if (isToday && items.length) {
+            tips = items.map((h) => `Celebrate <strong>${h.name}</strong> today!`);
+        } else {
+            if (isToday) tips.push(`Do something <strong>${todaysWord}</strong> today!`);
+            tips.push(...items.map((h) => h.name + (h.country ? ` (${h.country})` : "")));
+        }
+
+        // one class per type present on this day: "holiday" and/or "observance"
+        const types = [...new Set(items.map((h) => h.type).filter(Boolean))];
+
+        const attrs = [isToday && 'id="today"', types.length && `class="${types.join(" ")}"`, tips.length && `data-tooltip="${tips.join("<br>")}"`]
+            .filter(Boolean)
+            .join(" ");
+
+        html += `<td ${attrs}>${d}</td>`;
+        if ((offset + d) % 7 === 0) html += "</tr><tr>";
+    }
+
+    html += "</tr></table>";
     document.getElementById("date-header").innerHTML = html;
 }
 
 SetDate();
 
+// RANDOM
+// CPU stat under comment section
 const cpuField = document.getElementById("cpu-use");
 
 setInterval(() => {
