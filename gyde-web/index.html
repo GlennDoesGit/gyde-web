@@ -18,8 +18,9 @@
         <!-- scripts -->
         <script src="js/shared.js" defer></script>
         <script src="js/index.js" defer></script>
-        <script src="js/movies.js" defer></script>
-        <script src="js/steam.js" defer></script>
+        <script src="js/movies.js" type="module" defer></script>
+        <script src="js/anime.js" type="module" defer></script>
+        <script src="js/steam.js" type="module" defer></script>
         <script src="js/status.js" defer></script>
         <script src="js/tooltip.js" defer></script>
         <script src="assets/comment-widget/comment-widget.js" defer></script>
@@ -99,11 +100,14 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="/gallery/photos/"><img src="/gallery/photos/favicon.png" class="icon" />photos</a>
+                            <a href="/gallery/photos/"><img src="/gallery/photos/favicon.png" class="icon" />photos [wip]</a>
                         </li>
 
                         <li>
                             <a href="/gallery/art/"><img src="/gallery/art/favicon.png" class="icon" />art</a>
+                        </li>
+                        <li>
+                            <a href="/gallery/nostalgia/"><img src="/gallery/nostalgia/favicon.png" class="icon" />nostalgia</a>
                         </li>
                     </ul>
                 </li>
@@ -119,9 +123,6 @@
                         </svg>
                     </a>
                     <ul>
-                        <li>
-                            <a href="/gallery/nostalgia/"><img src="/gallery/nostalgia/favicon.png" class="icon" />nostalgia</a>
-                        </li>
                         <li>
                             <a href="wip.html"><img src="/shrines/nightreign/favicon.png" class="icon" />nightreign [wip]</a>
                         </li>
@@ -381,7 +382,10 @@
                 <!-- this came out looking so nice i love it -->
                 <div class="window steam active">
                     <div class="winbar">
-                        <p>Steam</p>
+                        <div class="wintitle">
+                            <p>Steam</p>
+                        </div>
+
                         <div class="controls">
                             <button aria-label="min"></button>
                             <button aria-label="max"></button>
@@ -396,14 +400,17 @@
                                 <p id="steam-state">Unavailable</p>
                             </div>
                         </div>
-                        <p style="color: var(--color-text3); font-size: 14px">Recently played</p>
+                        <p style="color: var(--color-text2); font-size: 14px">Recently played</p>
                         <div id="latest-games">Loading...</div>
                     </div>
                 </div>
 
-                <div class="window media active">
+                <div class="window movie active">
                     <div class="winbar">
-                        <p>Media</p>
+                        <div class="wintitle">
+                            <p>Movies & TV</p>
+                        </div>
+
                         <div class="controls">
                             <button aria-label="min"></button>
                             <button aria-label="max"></button>
@@ -411,12 +418,36 @@
                         </div>
                     </div>
                     <div class="winbody win-inset">
-                        <p style="color: var(--color-text2); font-size: 14px">Recently watched movies</p>
+                        <p style="color: var(--color-text2); font-size: 14px">Recently watched</p>
                         <div id="latest-movies">
                             <div class="movie-entry">
                                 <p>Loading...</p>
                             </div>
                         </div>
+                        <a href="https://letterboxd.com/itsgyde/" class="letterboxd-link" target="_blank">via Letterboxd</a>
+                        <img class="popcorn" src="images/random/popcorn.png" alt="popcorn" />
+                    </div>
+                </div>
+
+                <div class="window anime active">
+                    <div class="winbar">
+                        <div class="wintitle">
+                            <p>Anime</p>
+                        </div>
+                        <div class="controls">
+                            <button aria-label="min"></button>
+                            <button aria-label="max"></button>
+                            <button aria-label="close"></button>
+                        </div>
+                    </div>
+                    <div class="winbody win-inset">
+                        <p style="color: var(--color-text2); font-size: 14px">Recently watched</p>
+                        <div id="latest-animes">
+                            <div class="movie-entry">
+                                <p>Loading...</p>
+                            </div>
+                        </div>
+                        <a href="https://myanimelist.net/profile/itsgyde" class="letterboxd-link" target="_blank">via MAL</a>
                     </div>
                 </div>
             </section>
@@ -475,7 +506,10 @@
 
                 <div class="window date active">
                     <div class="winbar">
-                        <p>Date</p>
+                        <div class="wintitle">
+                            <p>Date</p>
+                        </div>
+
                         <div class="controls">
                             <button aria-label="min"></button>
                             <button aria-label="max"></button>
@@ -484,7 +518,6 @@
                     </div>
                     <div class="winbody win-inset">
                         <div id="date-header">
-                            <h2>November</h2>
                             <table id="date-table">
                                 <!-- autofilled by index.js -->
                             </table>

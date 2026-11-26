@@ -2,16 +2,15 @@
     --color-highlight: #fce4b1;
     --color-highlight2: #a2dae2;
 
-    --color-accent: #5f6b53;
-    --color-black: #25352b;
+    --color-accent: #758a62;
+    --color-accent2: #41552d;
+    --color-black: #1a1d1b;
 
     --color-text: #f1f1f1;
     --color-text2: #b6b6b6;
-    --color-text3: #68767e;
+    --color-text3: #84949e;
     --color-link: #a1b8aa;
     --color-link2: #d6e2da;
-
-    --color-accent-opc: #25352bcb;
 
     /* Extra or Misc */
     --color-link3: #3b526e;

@@ -268,6 +268,7 @@ header {
     display: flex;
     align-items: center;
     gap: 4px;
+    cursor: default;
 }
 
 #status-mood-img {
@@ -367,6 +368,10 @@ td {
 /* ----- */
 /* MEDIA */
 /* ----- */
+.movie .winbody {
+    position: relative;
+}
+
 #latest-movies {
     cursor: default;
     padding-bottom: 2px;
@@ -390,10 +395,22 @@ td {
 
 .rating {
     display: flex;
-    width: 10px;
+    align-items: center;
+    gap: 1px;
+    width: max-content;
     margin-top: 2px;
     margin-right: -1px;
     image-rendering: pixelated;
+}
+
+.rating > img {
+    flex: 0 0 auto;
+    height: 10px;
+    width: auto;
+}
+
+.rating p {
+    margin: 0;
 }
 
 .movie-poster {
@@ -408,6 +425,64 @@ td {
     filter: url(#dither) drop-shadow(6px 6px 0 var(--color-highlight2));
 }
 
+.letterboxd-link {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.popcorn {
+    position: absolute;
+    z-index: 5;
+    width: 64px;
+    right: -30px;
+    top: 40px;
+    filter: drop-shadow(1px 1px 8px var(--color-black));
+    rotate: 15deg;
+}
+
+.popcorn-kernel {
+    position: absolute;
+    width: 12px;
+    pointer-events: none;
+    image-rendering: pixelated;
+    z-index: 4;
+}
+/* ------ */
+/* ANIMES */
+/* ------ */
+
+#latest-animes {
+    cursor: default;
+    padding-bottom: 2px;
+}
+
+.rewatching-icon {
+    margin-left: 3px;
+}
+
+.rewatch-txt {
+    font-size: 11px;
+    font-family: CrimsonPro;
+    color: var(--color-text);
+    margin-top: -2px;
+}
+
+.anime-episodes {
+    color: var(--color-text);
+    font-family: CrimsonPro;
+    font-size: 10px;
+    line-height: 1;
+    padding: 0 2px;
+    padding-bottom: 1px;
+    margin-left: 2px;
+    background-color: var(--color-text4);
+    position: relative;
+    top: -1px;
+    white-space: nowrap;
+}
 /* ----- */
 /* STEAM */
 /* ----- */
@@ -469,7 +544,7 @@ td {
 }
 
 .hours-played {
-    color: var(--color-text2);
+    color: var(--color-text3);
     font-size: 13px;
 }
 

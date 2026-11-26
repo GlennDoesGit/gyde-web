@@ -1,10 +1,9 @@
 const tooltip = document.getElementById("tooltip");
-const offset = 24;
+const offset = 18;
 let tooltipTarget = null;
 
 function getTooltipTarget(el) {
     const target = el.closest("[data-tooltip]");
-    // keep your original exclusion for nav anchors
     if (target && target.matches("nav a.anchor")) return null;
     return target;
 }
@@ -13,7 +12,6 @@ function positionTooltip(e) {
     let x = e.clientX + offset;
     let y = e.clientY + offset;
 
-    // keep the tooltip inside the viewport
     const rect = tooltip.getBoundingClientRect();
     if (x + rect.width > window.innerWidth) x = e.clientX - rect.width - offset;
     if (y + rect.height > window.innerHeight) y = e.clientY - rect.height - offset;

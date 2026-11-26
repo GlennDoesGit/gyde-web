@@ -1,19 +1,19 @@
 const MOVIE_API_URL = "https://api.gyde.site/v1/movies";
 
-function createStars(rating) {
+function createHearts(rating) {
     const wrapper = document.createDocumentFragment();
     const value = rating ?? 0;
 
     for (let i = 1; i <= 5; i++) {
         const img = document.createElement("img");
-        img.alt = "star";
+        img.alt = "heart";
 
         if (value >= i) {
-            img.src = "/images/ui/star-full.png";
+            img.src = "/images/ui/heart-full.png";
         } else if (value >= i - 0.5) {
-            img.src = "/images/ui/star-half.png";
+            img.src = "/images/ui/heart-half.png";
         } else {
-            img.src = "/images/ui/star-empty.png";
+            img.src = "/images/ui/heart-empty.png";
         }
 
         wrapper.appendChild(img);
@@ -46,7 +46,7 @@ function formatDate(dateString) {
     return `${day}${suffix} ${month} ${year}`;
 }
 
-function renderMovies(films, container) {
+function renderAnimes(films, container) {
     container.replaceChildren();
 
     if (!films.length) {
@@ -70,8 +70,16 @@ function renderMovies(films, container) {
 
         const rating = document.createElement("div");
         rating.className = "rating";
-        rating.appendChild(createStars(film.rating));
+        rating.appendChild(createHearts(film.rating));
         movieEntry.appendChild(rating);
+
+        if (film.rewatching) {
+            const rewatching = document.createElement("img");
+            rewatching.src = "../images/ui/rewatch.png";
+            rewatching.className = "rewatching-icon";
+            rewatching.alt = "rewatching";
+            rating.appendChild(rewatching);
+        }
 
         const poster = document.createElement("img");
         poster.className = "movie-poster";
@@ -85,16 +93,18 @@ function renderMovies(films, container) {
     }
 }
 
+const POSTER_GAP = 12;
+
 function attachPoster(target, poster) {
     target.addEventListener("mousemove", (e) => {
-        banner.style.left = `${e.clientX + POSTER_GAP}px`;
-        banner.style.top = `${e.clientY - POSTER_GAP}px`;
+        poster.style.left = `${e.clientX + POSTER_GAP}px`;
+        poster.style.top = `${e.clientY - POSTER_GAP}px`;
         poster.style.transform = "translateY(-100%)";
         poster.style.display = "block";
     });
 
     target.addEventListener("mouseleave", () => {
-        banner.style.display = "none";
+        poster.style.display = "none";
     });
 }
 
@@ -104,7 +114,7 @@ async function loadMovies() {
         const res = await fetch(MOVIE_API_URL);
         if (!res.ok) throw new Error(`Error from movies.js: ${res.status}`);
         const { data } = await res.json();
-        renderMovies(data, container);
+        renderAnimes(data, container);
     } catch (err) {
         console.error("Failed to load movies: ", err);
         container.textContent = "Couldn't load recent films.";

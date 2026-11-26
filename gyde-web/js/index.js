@@ -1,5 +1,5 @@
 // TIME WIDGET
-// Credits to LouisPretends for these snippets. I really liked it on his site.
+// Credits to https://louispretends.com for these snippets. I really liked it on his site.
 const timeElement = document.getElementById("local-time");
 
 if (timeElement) {
@@ -301,5 +301,60 @@ document.querySelectorAll(".site-button-img").forEach((img) => {
     img.addEventListener("click", () => {
         const file = img.dataset.button;
         buttonTextarea.value = `<a href="https://gyde.site/"><img src="https://gyde.site/images/buttons/${file}" alt="Gyde's Site"></a>`;
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const popcorn = document.querySelector(".popcorn");
+    if (!popcorn || !window.gsap) return;
+
+    const sprites = ["images/random/kernel1.png", "images/random/kernel2.png"];
+    const shakeSound = new Audio("audio/random/popcorn_shake.mp3");
+
+    const baseRotation = Number(gsap.getProperty(popcorn, "rotation"));
+
+    const shake = () =>
+        gsap.to(popcorn, {
+            overwrite: "auto",
+            keyframes: [
+                { rotation: baseRotation - 4, duration: 0.07 },
+                { rotation: baseRotation + 4, duration: 0.07 },
+                { rotation: baseRotation - 3, duration: 0.07 },
+                { rotation: baseRotation + 3, duration: 0.07 },
+                { rotation: baseRotation - 2, duration: 0.07 },
+                { rotation: baseRotation, duration: 0.07, ease: "power2.out" },
+            ],
+        });
+
+    const flingKernel = () => {
+        const kernel = document.createElement("img");
+        kernel.src = gsap.utils.random(sprites);
+        kernel.className = "popcorn-kernel";
+        popcorn.parentElement.append(kernel);
+
+        gsap.set(kernel, {
+            left: popcorn.offsetLeft + popcorn.offsetWidth / 2,
+            top: popcorn.offsetTop + popcorn.offsetHeight / 3,
+            xPercent: -50,
+            yPercent: -50,
+            scale: 0.6,
+        });
+
+        const dur = 0.7;
+        const apex = gsap.utils.random(30, 50);
+        const drift = gsap.utils.random(-60, 60);
+
+        gsap.timeline({ onComplete: () => kernel.remove() })
+            .to(kernel, { x: drift, rotation: gsap.utils.random(-360, 360), duration: dur, ease: "none" }, 0)
+            .to(kernel, { y: -apex, duration: dur / 2, ease: "power2.out" }, 0)
+            .to(kernel, { y: `+=${apex}`, duration: dur / 2, ease: "power2.in" }, dur / 2)
+            .to(kernel, { opacity: 0, duration: 0.2 }, dur - 0.2);
+    };
+
+    popcorn.addEventListener("mouseenter", () => {
+        shake();
+        shakeSound.currentTime = 0;
+        shakeSound.play().catch(() => {});
+        for (let i = 0; i < 6; i++) flingKernel();
     });
 });
