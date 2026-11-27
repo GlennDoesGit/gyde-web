@@ -425,6 +425,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     popcorn.addEventListener("mouseenter", () => {
         shake();
+        shakeSound.currentTime = 0;
         shakeSound.play().catch(() => {});
         for (let i = 0; i < 6; i++) flingKernel();
     });
