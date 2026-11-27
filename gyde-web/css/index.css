@@ -132,7 +132,6 @@ header {
 .dash-list {
     list-style: none;
     padding-left: 1.25em;
-    margin: 0;
 }
 
 .dash-list li {
@@ -140,6 +139,21 @@ header {
 }
 
 .dash-list li::before {
+    content: "- ";
+    position: absolute;
+    left: -12px;
+}
+
+.todo-dash-list {
+    list-style: none;
+    padding-left: 1em;
+}
+
+.todo-dash-list li {
+    position: relative;
+}
+
+.todo-dash-list li::before {
     content: "- ";
     position: absolute;
     left: -12px;
@@ -382,6 +396,10 @@ td {
     cursor: default;
 }
 
+.holiday#today {
+    border: 2px solid rgb(204, 165, 106);
+}
+
 .holiday {
     border: 1px dashed rgb(182, 136, 67);
     background-color: rgba(105, 71, 19, 0.25);
@@ -394,11 +412,37 @@ td {
     cursor: default;
 }
 
+.observance#today {
+    border: 2px solid rgb(106, 168, 204);
+}
+
 /* ----- */
 /* MEDIA */
 /* ----- */
+.recent-tab {
+    color: var(--color-text);
+    font-size: 12px;
+    background: var(--color-black);
+    padding: 2px 4px;
+    border: 1px solid var(--color-text3);
+    margin-bottom: 4px;
+    font-family: CrimsonPro;
+    text-transform: uppercase;
+}
+
+.media-source-link {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    font-weight: bold;
+}
+
 .movie .winbody {
     position: relative;
+}
+
+.letterboxd-link {
+    margin-bottom: 8px;
 }
 
 #latest-movies {
@@ -454,22 +498,14 @@ td {
     filter: url(#dither) drop-shadow(6px 6px 0 var(--color-highlight2));
 }
 
-.letterboxd-link {
-    display: block;
-    text-align: right;
-    font-size: 12px;
-    font-weight: bold;
-    margin-top: 4px;
-}
-
 .popcorn {
     position: absolute;
     z-index: 5;
     width: 64px;
     right: -30px;
     top: 40px;
-    filter: drop-shadow(1px 1px 8px var(--color-black));
-    rotate: 15deg;
+    filter: drop-shadow(1px 1px 4px var(--color-black));
+    rotate: 25deg;
 }
 
 .popcorn-kernel {
@@ -479,6 +515,7 @@ td {
     image-rendering: pixelated;
     z-index: 4;
 }
+
 /* ------ */
 /* ANIMES */
 /* ------ */
@@ -512,6 +549,27 @@ td {
     top: -1px;
     white-space: nowrap;
 }
+
+.leek {
+    position: absolute;
+    z-index: 5;
+    width: 72px;
+    left: -40px;
+    bottom: -10px;
+    filter: drop-shadow(1px 1px 4px var(--color-black));
+    rotate: 10deg;
+}
+
+.bocchi {
+    position: absolute;
+    z-index: 5;
+    width: 64px;
+    left: -50px;
+    bottom: -10px;
+    filter: drop-shadow(1px 1px 4px var(--color-black));
+    rotate: -5deg;
+}
+
 /* ----- */
 /* STEAM */
 /* ----- */
@@ -526,16 +584,20 @@ td {
 
 #steam-status {
     margin-left: 10px;
-    margin-top: -3px; /* idk how else to vertically center this lol */
-
-    p {
-        padding: 2px 0px;
-    }
+    margin-top: -3px;
 
     a {
         text-decoration: none;
         color: inherit;
     }
+}
+
+#steam-name {
+    padding: 2px 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
 }
 
 #avatar {
@@ -549,7 +611,7 @@ td {
 }
 
 #latest-games {
-    padding-bottom: 2px;
+    padding-top: 2px;
     cursor: default;
 }
 
@@ -570,6 +632,7 @@ td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: 2px;
 }
 
 .hours-played {
